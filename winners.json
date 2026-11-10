@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-10T20:29:29.039Z",
+  "timestamp": "2026-11-10T20:53:17.056Z",
   "hostHardware": {
     "gpu": "NVIDIA GeForce RTX 4070 12GB (Ada Lovelace sm_89, Driver 621.14, CUDA 13.4, Vulkan 1.4)",
     "cpu": "Intel Core i7-13700F (16C/24T: 8P + 8E, up to 5.2 GHz, AVX2, FMA3, BMI2)",
@@ -23,21 +23,21 @@
       "contestants": [
         {
           "name": "Bun (JavaScriptCore)",
-          "opsPerSec": 91475,
-          "rawDurationMs": 0.5466000000000015
+          "opsPerSec": 87002,
+          "rawDurationMs": 0.5747
         },
         {
           "name": "Node.js (Chromium V8 Bundled)",
-          "opsPerSec": 65462,
-          "rawDurationMs": 0.7637999999999998
+          "opsPerSec": 71664,
+          "rawDurationMs": 0.6977000000000011
         }
       ],
       "winner": "Bun (JavaScriptCore)",
       "runnerUp": "Node.js (Chromium V8 Bundled)",
-      "speedupFactor": 1.4,
-      "primaryMetric": "91475 ops/sec",
+      "speedupFactor": 1.21,
+      "primaryMetric": "87002 ops/sec",
       "winnerLayer": 6,
-      "summary": "Richards task queue dispatch: Bun (JavaScriptCore) delivered 1.4x throughput advantage."
+      "summary": "Richards task queue dispatch: Bun (JavaScriptCore) delivered 1.21x throughput advantage."
     },
     {
       "id": "octane_navierstokes",
@@ -46,21 +46,21 @@
       "contestants": [
         {
           "name": "Bun (JavaScriptCore)",
-          "opsPerSec": 1057.6,
-          "rawDurationMs": 0.9455000000000027
+          "opsPerSec": 780.8,
+          "rawDurationMs": 1.280699999999996
         },
         {
           "name": "Node.js (Chromium V8 Bundled)",
-          "opsPerSec": 587.8,
-          "rawDurationMs": 1.7012
+          "opsPerSec": 691.9,
+          "rawDurationMs": 1.4452999999999996
         }
       ],
       "winner": "Bun (JavaScriptCore)",
       "runnerUp": "Node.js (Chromium V8 Bundled)",
-      "speedupFactor": 1.8,
-      "primaryMetric": "1057.6 runs/sec",
+      "speedupFactor": 1.13,
+      "primaryMetric": "780.8 runs/sec",
       "winnerLayer": 6,
-      "summary": "Advection and velocity integration: Bun (JavaScriptCore) achieved 1.8x over Node.js (Chromium V8 Bundled)."
+      "summary": "Advection and velocity integration: Bun (JavaScriptCore) achieved 1.13x over Node.js (Chromium V8 Bundled)."
     },
     {
       "id": "wasm_vs_jit_compute",
@@ -69,21 +69,21 @@
       "contestants": [
         {
           "name": "WebAssembly (Inline WASM Instance)",
-          "opsPerSec": 1252034556,
-          "rawDurationMs": 0.7986999999999966
+          "opsPerSec": 1163331782,
+          "rawDurationMs": 0.8596000000000004
         },
         {
           "name": "Bun JSC JIT (Pure JavaScript)",
-          "opsPerSec": 1037667324,
-          "rawDurationMs": 0.9637000000000029
+          "opsPerSec": 1036162056,
+          "rawDurationMs": 0.9651000000000067
         }
       ],
       "winner": "WebAssembly (Inline WASM Instance)",
       "runnerUp": "Bun JSC JIT (Pure JavaScript)",
-      "speedupFactor": 1.21,
-      "primaryMetric": "1252M ops/sec",
+      "speedupFactor": 1.12,
+      "primaryMetric": "1163M ops/sec",
       "winnerLayer": 5,
-      "summary": "Low-level compute: WebAssembly (Inline WASM Instance) executed at 1.21x throughput."
+      "summary": "Low-level compute: WebAssembly (Inline WASM Instance) executed at 1.12x throughput."
     },
     {
       "id": "json_parse_serialize",
@@ -92,21 +92,21 @@
       "contestants": [
         {
           "name": "Bun (JavaScriptCore JSON C++ parser)",
-          "opsPerSec": 944644,
-          "rawDurationMs": 0.5293000000000063
+          "opsPerSec": 989903,
+          "rawDurationMs": 0.5050999999999988
         },
         {
           "name": "Node.js (Chromium V8 Bundled)",
-          "opsPerSec": 453227,
-          "rawDurationMs": 1.103200000000001
+          "opsPerSec": 458800,
+          "rawDurationMs": 1.0897999999999985
         }
       ],
       "winner": "Bun (JavaScriptCore JSON C++ parser)",
       "runnerUp": "Node.js (Chromium V8 Bundled)",
-      "speedupFactor": 2.08,
-      "primaryMetric": "944644 ops/sec",
+      "speedupFactor": 2.16,
+      "primaryMetric": "989903 ops/sec",
       "winnerLayer": 6,
-      "summary": "Structured payload parsing: Bun (JavaScriptCore JSON C++ parser) achieved 2.08x advantage."
+      "summary": "Structured payload parsing: Bun (JavaScriptCore JSON C++ parser) achieved 2.16x advantage."
     },
     {
       "id": "directory_walk_fs",
@@ -115,32 +115,32 @@
       "contestants": [
         {
           "name": "Node.js (fs.readdirSync recursive)",
-          "latencyUs": 393,
-          "rawDurationMs": 0.39273999999999776,
+          "latencyUs": 425,
+          "rawDurationMs": 0.42529999999999857,
           "details": {
             "filesScanned": 102
           }
         },
         {
           "name": "Bun (new Bun.Glob in Rust)",
-          "latencyUs": 612,
-          "rawDurationMs": 0.6124599999999987,
+          "latencyUs": 597,
+          "rawDurationMs": 0.5967999999999989,
           "details": {
             "filesScanned": 90
           }
         },
         {
           "name": "PowerShell (Get-ChildItem -Recurse)",
-          "latencyUs": 217701,
-          "rawDurationMs": 217.7014
+          "latencyUs": 190242,
+          "rawDurationMs": 190.24219999999997
         }
       ],
       "winner": "Node.js (fs.readdirSync recursive)",
       "runnerUp": "Bun (new Bun.Glob in Rust)",
-      "speedupFactor": 1.56,
-      "primaryMetric": "393 µs median latency",
+      "speedupFactor": 1.4,
+      "primaryMetric": "425 µs median latency",
       "winnerLayer": 6,
-      "summary": "Directory scan: Node.js (fs.readdirSync recursive) was 1.56x faster than Bun (new Bun.Glob in Rust)."
+      "summary": "Directory scan: Node.js (fs.readdirSync recursive) was 1.4x faster than Bun (new Bun.Glob in Rust)."
     },
     {
       "id": "file_stat_ops",
@@ -149,24 +149,24 @@
       "contestants": [
         {
           "name": "Node.js (fs.statSync)",
-          "opsPerSec": 61424,
-          "rawDurationMs": 8.140100000000018
+          "opsPerSec": 63771,
+          "rawDurationMs": 7.84050000000002
         },
         {
           "name": "Bun (Bun.file zero-copy stat)",
-          "opsPerSec": 57911,
-          "rawDurationMs": 8.634000000000015
+          "opsPerSec": 59897,
+          "rawDurationMs": 8.347699999999975
         },
         {
           "name": "uutils (Rust coreutils stat)",
-          "opsPerSec": 135,
-          "rawDurationMs": 74.17089999999996
+          "opsPerSec": 154,
+          "rawDurationMs": 64.77770000000004
         }
       ],
       "winner": "Node.js (fs.statSync)",
       "runnerUp": "Bun (Bun.file zero-copy stat)",
       "speedupFactor": 1.06,
-      "primaryMetric": "61424 ops/sec",
+      "primaryMetric": "63771 ops/sec",
       "winnerLayer": 6,
       "summary": "Kernel metadata query: Node.js (fs.statSync) achieved 1.06x higher throughput."
     },
@@ -177,8 +177,8 @@
       "contestants": [
         {
           "name": "POSIX Web Stream Pipe (Bun Engine)",
-          "throughputMBs": 37965.1,
-          "rawDurationMs": 0.2633999999999901
+          "throughputMBs": 37495.3,
+          "rawDurationMs": 0.26670000000001437
         },
         {
           "name": "Simulated Blocking Pipe (1Gbps wire baseline)",
@@ -187,10 +187,10 @@
       ],
       "winner": "POSIX Web Stream Pipe (Bun Engine)",
       "runnerUp": "Simulated Blocking Pipe (1Gbps wire baseline)",
-      "speedupFactor": 303.72,
-      "primaryMetric": "37965.1 MB/s",
+      "speedupFactor": 299.96,
+      "primaryMetric": "37495.3 MB/s",
       "winnerLayer": 2,
-      "summary": "Stream multiplexing: in-memory web stream achieved 37965.1 MB/s throughput."
+      "summary": "Stream multiplexing: in-memory web stream achieved 37495.3 MB/s throughput."
     },
     {
       "id": "zero_copy_memory",
@@ -199,21 +199,21 @@
       "contestants": [
         {
           "name": "Zero-Copy Pointer Subarray (Linux/POSIX memory model)",
-          "opsPerSec": 11111111,
-          "rawDurationMs": 0.045000000000015916
+          "opsPerSec": 11261261,
+          "rawDurationMs": 0.044399999999996
         },
         {
           "name": "Memory Alloc & Copy (Buffer.slice)",
-          "opsPerSec": 54492,
-          "rawDurationMs": 9.175599999999974
+          "opsPerSec": 60133,
+          "rawDurationMs": 8.314899999999966
         }
       ],
       "winner": "Zero-Copy Pointer Subarray (Linux/POSIX memory model)",
       "runnerUp": "Memory Alloc & Copy (Buffer.slice)",
-      "speedupFactor": 203.9,
+      "speedupFactor": 187.27,
       "primaryMetric": "11M ops/sec",
       "winnerLayer": 3,
-      "summary": "Virtual memory zero-copy: pointer offset avoids kernel/heap copies with 203.9x speedup."
+      "summary": "Virtual memory zero-copy: pointer offset avoids kernel/heap copies with 187.27x speedup."
     },
     {
       "id": "process_spawn_latency",
@@ -222,26 +222,26 @@
       "contestants": [
         {
           "name": "uutils (Rust coreutils.exe true)",
-          "latencyUs": 7394,
-          "rawDurationMs": 7.393599999999992
+          "latencyUs": 6975,
+          "rawDurationMs": 6.9751200000000155
         },
         {
           "name": "Windows NT native cmd.exe",
-          "latencyUs": 7516,
-          "rawDurationMs": 7.516300000000001
+          "latencyUs": 7253,
+          "rawDurationMs": 7.253280000000006
         },
         {
           "name": "Bun Process Spawn",
-          "latencyUs": 15558,
-          "rawDurationMs": 15.557520000000011
+          "latencyUs": 14509,
+          "rawDurationMs": 14.508540000000005
         }
       ],
       "winner": "uutils (Rust coreutils.exe true)",
       "runnerUp": "Windows NT native cmd.exe",
-      "speedupFactor": 1.02,
-      "primaryMetric": "7.4 ms",
+      "speedupFactor": 1.04,
+      "primaryMetric": "7.0 ms",
       "winnerLayer": 4,
-      "summary": "Process fork/exec: uutils (Rust coreutils.exe true) spawned in 7.4 ms."
+      "summary": "Process fork/exec: uutils (Rust coreutils.exe true) spawned in 7.0 ms."
     },
     {
       "id": "shell_startup_hyperfine",
@@ -250,108 +250,108 @@
       "contestants": [
         {
           "name": "uutils (Rust coreutils.exe true)",
-          "latencyUs": 7323,
-          "rawDurationMs": 7.32,
+          "latencyUs": 6512,
+          "rawDurationMs": 6.51,
           "details": {
-            "minMs": 7.13,
-            "medianMs": 7.32,
-            "p95Ms": 7.59,
-            "maxMs": 7.59,
-            "meanMs": 7.34,
+            "minMs": 6.4,
+            "medianMs": 6.51,
+            "p95Ms": 6.65,
+            "maxMs": 6.65,
+            "meanMs": 6.54,
             "runs": 7,
             "layer": 4
           }
         },
         {
           "name": "Windows NT native cmd.exe (/c exit)",
-          "latencyUs": 7663,
-          "rawDurationMs": 7.66,
+          "latencyUs": 6968,
+          "rawDurationMs": 6.97,
           "details": {
-            "minMs": 7.41,
-            "medianMs": 7.66,
-            "p95Ms": 9.84,
-            "maxMs": 9.84,
-            "meanMs": 7.95,
+            "minMs": 6.86,
+            "medianMs": 6.97,
+            "p95Ms": 11.8,
+            "maxMs": 11.8,
+            "meanMs": 7.71,
             "runs": 7,
             "layer": 1
           }
         },
         {
           "name": "Bun.$ (In-Process Tagged Template Shell)",
-          "latencyUs": 7868,
-          "rawDurationMs": 7.87,
+          "latencyUs": 7131,
+          "rawDurationMs": 7.13,
           "details": {
-            "medianMs": 7.87,
+            "medianMs": 7.13,
             "runs": 7,
             "layer": 6
           }
         },
         {
           "name": "Bun CLI Process (bun -e exit)",
-          "latencyUs": 14437,
-          "rawDurationMs": 14.44,
+          "latencyUs": 13239,
+          "rawDurationMs": 13.24,
           "details": {
-            "minMs": 13.99,
-            "medianMs": 14.44,
-            "p95Ms": 14.82,
-            "maxMs": 14.82,
-            "meanMs": 14.39,
+            "minMs": 13.1,
+            "medianMs": 13.24,
+            "p95Ms": 13.41,
+            "maxMs": 13.41,
+            "meanMs": 13.23,
             "runs": 7,
             "layer": 6
           }
         },
         {
           "name": "Git Bash (bash.exe --noprofile -c exit)",
-          "latencyUs": 23681,
-          "rawDurationMs": 23.68,
+          "latencyUs": 22301,
+          "rawDurationMs": 22.3,
           "details": {
-            "minMs": 23.09,
-            "medianMs": 23.68,
-            "p95Ms": 23.9,
-            "maxMs": 23.9,
-            "meanMs": 23.59,
+            "minMs": 22.06,
+            "medianMs": 22.3,
+            "p95Ms": 23.33,
+            "maxMs": 23.33,
+            "meanMs": 22.5,
             "runs": 7,
             "layer": 2
           }
         },
         {
           "name": "Nushell (nu.exe -c exit)",
-          "latencyUs": 24254,
-          "rawDurationMs": 24.25,
+          "latencyUs": 23312,
+          "rawDurationMs": 23.31,
           "details": {
-            "minMs": 23.89,
-            "medianMs": 24.25,
-            "p95Ms": 24.64,
-            "maxMs": 24.64,
-            "meanMs": 24.25,
+            "minMs": 22.85,
+            "medianMs": 23.31,
+            "p95Ms": 25.64,
+            "maxMs": 25.64,
+            "meanMs": 23.66,
             "runs": 7,
             "layer": 4
           }
         },
         {
-          "name": "PowerShell 7 Core (pwsh.exe -NoProfile)",
-          "latencyUs": 175758,
-          "rawDurationMs": 175.76,
+          "name": "Windows PowerShell 5.1 (-NoProfile)",
+          "latencyUs": 162142,
+          "rawDurationMs": 162.14,
           "details": {
-            "minMs": 174.52,
-            "medianMs": 175.76,
-            "p95Ms": 189.65,
-            "maxMs": 189.65,
-            "meanMs": 178.98,
+            "minMs": 158.92,
+            "medianMs": 162.14,
+            "p95Ms": 170.16,
+            "maxMs": 170.16,
+            "meanMs": 162.69,
             "runs": 7,
             "layer": 1
           }
         },
         {
-          "name": "Windows PowerShell 5.1 (-NoProfile)",
-          "latencyUs": 180141,
-          "rawDurationMs": 180.14,
+          "name": "PowerShell 7 Core (pwsh.exe -NoProfile)",
+          "latencyUs": 170848,
+          "rawDurationMs": 170.85,
           "details": {
-            "minMs": 171.48,
-            "medianMs": 180.14,
-            "p95Ms": 185.1,
-            "maxMs": 185.1,
-            "meanMs": 179.37,
+            "minMs": 169.65,
+            "medianMs": 170.85,
+            "p95Ms": 172,
+            "maxMs": 172,
+            "meanMs": 170.85,
             "runs": 7,
             "layer": 1
           }
@@ -359,10 +359,10 @@
       ],
       "winner": "uutils (Rust coreutils.exe true)",
       "runnerUp": "Windows NT native cmd.exe (/c exit)",
-      "speedupFactor": 1.05,
-      "primaryMetric": "7.32 ms median",
+      "speedupFactor": 1.07,
+      "primaryMetric": "6.51 ms median",
       "winnerLayer": 4,
-      "summary": "Hyperfine startup test: uutils (Rust coreutils.exe true) achieved 7.32 ms median latency, outperforming Windows NT native cmd.exe (/c exit) by 1.05x and slowest shell (Windows PowerShell 5.1 (-NoProfile)) by 24.6x."
+      "summary": "Hyperfine startup test: uutils (Rust coreutils.exe true) achieved 6.51 ms median latency, outperforming Windows NT native cmd.exe (/c exit) by 1.07x and slowest shell (PowerShell 7 Core (pwsh.exe -NoProfile)) by 26.2x."
     },
     {
       "id": "webui_bundler_poc",
@@ -371,8 +371,8 @@
       "contestants": [
         {
           "name": "Bun.build (Rust Native Bundler + Minifier + Sourcemap)",
-          "latencyUs": 1689,
-          "rawDurationMs": 1.69,
+          "latencyUs": 1436,
+          "rawDurationMs": 1.44,
           "details": {
             "bundleSizeBytes": 4866,
             "modules": 6
@@ -389,10 +389,10 @@
       ],
       "winner": "Bun.build (Rust Native Bundler + Minifier + Sourcemap)",
       "runnerUp": "Node.js / Rollup + Terser (Chromium WebUI bundle_js.py baseline)",
-      "speedupFactor": 224.93,
-      "primaryMetric": "1.7 ms latency",
+      "speedupFactor": 264.65,
+      "primaryMetric": "1.4 ms latency",
       "winnerLayer": 6,
-      "summary": "WebUI compilation: Bun.build bundled the entire Material 3 component tree in 1.7 ms (224.93x faster than Chromium Rollup/Terser pipeline)."
+      "summary": "WebUI compilation: Bun.build bundled the entire Material 3 component tree in 1.4 ms (264.65x faster than Chromium Rollup/Terser pipeline)."
     },
     {
       "id": "transpiler_throughput",
@@ -401,8 +401,8 @@
       "contestants": [
         {
           "name": "Bun.Transpiler (Rust AST Parser & Code Generator)",
-          "opsPerSec": 74937,
-          "rawDurationMs": 6.6723000000001775
+          "opsPerSec": 76988,
+          "rawDurationMs": 6.4945000000006985
         },
         {
           "name": "tsc (TypeScript Compiler in Node.js)",
@@ -411,10 +411,10 @@
       ],
       "winner": "Bun.Transpiler (Rust AST Parser & Code Generator)",
       "runnerUp": "tsc (TypeScript Compiler in Node.js)",
-      "speedupFactor": 936.7,
-      "primaryMetric": "74937 files/sec",
+      "speedupFactor": 962.4,
+      "primaryMetric": "76988 files/sec",
       "winnerLayer": 6,
-      "summary": "TS AST transform: Bun.Transpiler achieved 74937 files/sec (936.7x over tsc)."
+      "summary": "TS AST transform: Bun.Transpiler achieved 76988 files/sec (962.4x over tsc)."
     },
     {
       "id": "chromium_native_buildtools",
@@ -457,38 +457,38 @@
       "contestants": [
         {
           "name": "Bun.zstdCompressSync (Facebook Zstandard)",
-          "throughputMBs": 3692.9,
-          "rawDurationMs": 0.4258100000000013,
+          "throughputMBs": 3659.5,
+          "rawDurationMs": 0.42969999999995706,
           "details": {
             "compressedSize": 4277,
             "ratio": "385.5"
           }
         },
         {
-          "name": "Bun.deflateSync (Raw Deflate)",
-          "throughputMBs": 560.1,
-          "rawDurationMs": 2.8075599999999215,
+          "name": "Bun.gzipSync (RFC 1952 Gzip)",
+          "throughputMBs": 572.2,
+          "rawDurationMs": 2.7483000000000173,
           "details": {
-            "compressedSize": 101395,
+            "compressedSize": 101413,
             "ratio": "16.3"
           }
         },
         {
-          "name": "Bun.gzipSync (RFC 1952 Gzip)",
-          "throughputMBs": 559.4,
-          "rawDurationMs": 2.8112099999999374,
+          "name": "Bun.deflateSync (Raw Deflate)",
+          "throughputMBs": 560.6,
+          "rawDurationMs": 2.805109999999968,
           "details": {
-            "compressedSize": 101413,
+            "compressedSize": 101395,
             "ratio": "16.3"
           }
         }
       ],
       "winner": "Bun.zstdCompressSync (Facebook Zstandard)",
-      "runnerUp": "Bun.deflateSync (Raw Deflate)",
-      "speedupFactor": 6.59,
-      "primaryMetric": "3692.9 MB/s",
+      "runnerUp": "Bun.gzipSync (RFC 1952 Gzip)",
+      "speedupFactor": 6.4,
+      "primaryMetric": "3659.5 MB/s",
       "winnerLayer": 6,
-      "summary": "Compression pipeline: Bun.zstdCompressSync (Facebook Zstandard) achieved 3692.9 MB/s (6.59x over Bun.deflateSync (Raw Deflate))."
+      "summary": "Compression pipeline: Bun.zstdCompressSync (Facebook Zstandard) achieved 3659.5 MB/s (6.4x over Bun.gzipSync (RFC 1952 Gzip))."
     },
     {
       "id": "hashing_throughput",
@@ -497,31 +497,31 @@
       "contestants": [
         {
           "name": "Bun.hash.crc32 (Hardware CRC32)",
-          "opsPerSec": 3324402,
-          "rawDurationMs": 15.040299999999661
+          "opsPerSec": 3428391,
+          "rawDurationMs": 14.584100000000035
         },
         {
           "name": "Bun.hash.wyhash (Non-crypto SIMD Hash)",
-          "opsPerSec": 3139974,
-          "rawDurationMs": 15.92370000000028
+          "opsPerSec": 3270047,
+          "rawDurationMs": 15.29030000000057
         },
         {
           "name": "Bun.CryptoHasher('sha256')",
-          "opsPerSec": 218789,
-          "rawDurationMs": 228.53040000000055
+          "opsPerSec": 223847,
+          "rawDurationMs": 223.3665000000001
         },
         {
           "name": "Bun.CryptoHasher('blake2b256')",
-          "opsPerSec": 102955,
-          "rawDurationMs": 485.64850000000024
+          "opsPerSec": 104562,
+          "rawDurationMs": 478.1844000000001
         }
       ],
       "winner": "Bun.hash.crc32 (Hardware CRC32)",
       "runnerUp": "Bun.hash.wyhash (Non-crypto SIMD Hash)",
-      "speedupFactor": 1.06,
-      "primaryMetric": "3324k ops/sec",
+      "speedupFactor": 1.05,
+      "primaryMetric": "3428k ops/sec",
       "winnerLayer": 6,
-      "summary": "Hash calculation: Bun.hash.crc32 (Hardware CRC32) achieved 3324k ops/sec (1.06x over Bun.hash.wyhash (Non-crypto SIMD Hash))."
+      "summary": "Hash calculation: Bun.hash.crc32 (Hardware CRC32) achieved 3428k ops/sec (1.05x over Bun.hash.wyhash (Non-crypto SIMD Hash))."
     },
     {
       "id": "sqlite_batch_transactions",
@@ -530,28 +530,28 @@
       "contestants": [
         {
           "name": "bun:sqlite Batch Insert (Prepared Statement in Transaction)",
-          "opsPerSec": 1200394,
-          "rawDurationMs": 8.330600000000231,
+          "opsPerSec": 1209775,
+          "rawDurationMs": 8.265999999999622,
           "details": {
             "rows": 10000,
-            "durationMs": "8.33"
+            "durationMs": "8.27"
           }
         },
         {
           "name": "bun:sqlite Indexed Select Query (Prepared Statement)",
-          "opsPerSec": 323989,
-          "rawDurationMs": 15.432599999999184,
+          "opsPerSec": 333890,
+          "rawDurationMs": 14.974999999999454,
           "details": {
             "queries": 5000,
-            "durationMs": "15.43"
+            "durationMs": "14.97"
           }
         }
       ],
       "winner": "bun:sqlite Batch Insert (Prepared Statement in Transaction)",
       "speedupFactor": 1,
-      "primaryMetric": "1200394 inserts/sec",
+      "primaryMetric": "1209775 inserts/sec",
       "winnerLayer": 6,
-      "summary": "In-memory SQLite: executed 10000 prepared inserts at 1200394 inserts/sec and 323989 queries/sec with zero external C dependencies."
+      "summary": "In-memory SQLite: executed 10000 prepared inserts at 1209775 inserts/sec and 333890 queries/sec with zero external C dependencies."
     }
   ],
   "auditSummary": {

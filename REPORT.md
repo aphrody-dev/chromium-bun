@@ -1,7 +1,7 @@
 # 6-Layer Sovereign Architecture & Chromium-Bun Public Benchmark Suite
 
 > **Stack**: `1. POSIX -> 2. Unix -> 3. Linux -> 4. GNU (uutils) -> 5. Chromium Native -> 6. Bun (Full Rust)`
-> **Run Date**: 2026-11-10T20:29:29.039Z
+> **Run Date**: 2026-11-10T20:53:17.056Z
 > **Host Environment**: Windows NT (Microsoft Windows NT 10.0.26100 (x64) with native IOCP & DirectStorage)
 > **CPU**: Intel Core i7-13700F (16C/24T: 8P + 8E, up to 5.2 GHz, AVX2, FMA3, BMI2)
 > **GPU**: NVIDIA GeForce RTX 4070 12GB (Ada Lovelace sm_89, Driver 621.14, CUDA 13.4, Vulkan 1.4)
@@ -82,165 +82,165 @@ Total Audited: **22** | **PURGE_FOR_BUN**: **11** | **KEEP_CHROMIUM_NATIVE**: **
 - **Category**: `A_ENGINES`
 - **Winner**: **Bun (JavaScriptCore)** (Assigned to **Layer 6**)
 - **Runner Up**: Node.js (Chromium V8 Bundled)
-- **Speedup Factor**: **1.4x**
-- **Primary Metric**: `91475 ops/sec`
-- **Summary**: Richards task queue dispatch: Bun (JavaScriptCore) delivered 1.4x throughput advantage.
+- **Speedup Factor**: **1.21x**
+- **Primary Metric**: `87002 ops/sec`
+- **Summary**: Richards task queue dispatch: Bun (JavaScriptCore) delivered 1.21x throughput advantage.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun (JavaScriptCore)** | **91 475 ops/sec** | 0.55 ms | `-` |
-| Node.js (Chromium V8 Bundled) | 65 462 ops/sec | 0.76 ms | `-` |
+| **Bun (JavaScriptCore)** | **87 002 ops/sec** | 0.57 ms | `-` |
+| Node.js (Chromium V8 Bundled) | 71 664 ops/sec | 0.70 ms | `-` |
 
 ### NavierStokes 2D Fluid Dynamics Grid Simulation
 - **Category**: `A_ENGINES`
 - **Winner**: **Bun (JavaScriptCore)** (Assigned to **Layer 6**)
 - **Runner Up**: Node.js (Chromium V8 Bundled)
-- **Speedup Factor**: **1.8x**
-- **Primary Metric**: `1057.6 runs/sec`
-- **Summary**: Advection and velocity integration: Bun (JavaScriptCore) achieved 1.8x over Node.js (Chromium V8 Bundled).
+- **Speedup Factor**: **1.13x**
+- **Primary Metric**: `780.8 runs/sec`
+- **Summary**: Advection and velocity integration: Bun (JavaScriptCore) achieved 1.13x over Node.js (Chromium V8 Bundled).
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun (JavaScriptCore)** | **1 057,6 ops/sec** | 0.95 ms | `-` |
-| Node.js (Chromium V8 Bundled) | 587,8 ops/sec | 1.70 ms | `-` |
+| **Bun (JavaScriptCore)** | **780,8 ops/sec** | 1.28 ms | `-` |
+| Node.js (Chromium V8 Bundled) | 691,9 ops/sec | 1.45 ms | `-` |
 
 ### WebAssembly vs Native JavaScript JIT Numeric Kernel (1M Iterations)
 - **Category**: `A_ENGINES`
 - **Winner**: **WebAssembly (Inline WASM Instance)** (Assigned to **Layer 5**)
 - **Runner Up**: Bun JSC JIT (Pure JavaScript)
-- **Speedup Factor**: **1.21x**
-- **Primary Metric**: `1252M ops/sec`
-- **Summary**: Low-level compute: WebAssembly (Inline WASM Instance) executed at 1.21x throughput.
+- **Speedup Factor**: **1.12x**
+- **Primary Metric**: `1163M ops/sec`
+- **Summary**: Low-level compute: WebAssembly (Inline WASM Instance) executed at 1.12x throughput.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **WebAssembly (Inline WASM Instance)** | **1 252 034 556 ops/sec** | 0.80 ms | `-` |
-| Bun JSC JIT (Pure JavaScript) | 1 037 667 324 ops/sec | 0.96 ms | `-` |
+| **WebAssembly (Inline WASM Instance)** | **1 163 331 782 ops/sec** | 0.86 ms | `-` |
+| Bun JSC JIT (Pure JavaScript) | 1 036 162 056 ops/sec | 0.97 ms | `-` |
 
 ### JSON Serialization & Deserialization Heavy Pipeline
 - **Category**: `A_ENGINES`
 - **Winner**: **Bun (JavaScriptCore JSON C++ parser)** (Assigned to **Layer 6**)
 - **Runner Up**: Node.js (Chromium V8 Bundled)
-- **Speedup Factor**: **2.08x**
-- **Primary Metric**: `944644 ops/sec`
-- **Summary**: Structured payload parsing: Bun (JavaScriptCore JSON C++ parser) achieved 2.08x advantage.
+- **Speedup Factor**: **2.16x**
+- **Primary Metric**: `989903 ops/sec`
+- **Summary**: Structured payload parsing: Bun (JavaScriptCore JSON C++ parser) achieved 2.16x advantage.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun (JavaScriptCore JSON C++ parser)** | **944 644 ops/sec** | 0.53 ms | `-` |
-| Node.js (Chromium V8 Bundled) | 453 227 ops/sec | 1.10 ms | `-` |
+| **Bun (JavaScriptCore JSON C++ parser)** | **989 903 ops/sec** | 0.51 ms | `-` |
+| Node.js (Chromium V8 Bundled) | 458 800 ops/sec | 1.09 ms | `-` |
 
 ### Filesystem Directory Walk (Chromium ui/color tree)
 - **Category**: `B_OS_POSIX`
 - **Winner**: **Node.js (fs.readdirSync recursive)** (Assigned to **Layer 6**)
 - **Runner Up**: Bun (new Bun.Glob in Rust)
-- **Speedup Factor**: **1.56x**
-- **Primary Metric**: `393 µs median latency`
-- **Summary**: Directory scan: Node.js (fs.readdirSync recursive) was 1.56x faster than Bun (new Bun.Glob in Rust).
+- **Speedup Factor**: **1.4x**
+- **Primary Metric**: `425 µs median latency`
+- **Summary**: Directory scan: Node.js (fs.readdirSync recursive) was 1.4x faster than Bun (new Bun.Glob in Rust).
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Node.js (fs.readdirSync recursive)** | **393 µs (0.39 ms)** | 0.39 ms | `{"filesScanned":102}` |
-| Bun (new Bun.Glob in Rust) | 612 µs (0.61 ms) | 0.61 ms | `{"filesScanned":90}` |
-| PowerShell (Get-ChildItem -Recurse) | 217 701 µs (217.70 ms) | 217.70 ms | `-` |
+| **Node.js (fs.readdirSync recursive)** | **425 µs (0.42 ms)** | 0.43 ms | `{"filesScanned":102}` |
+| Bun (new Bun.Glob in Rust) | 597 µs (0.60 ms) | 0.60 ms | `{"filesScanned":90}` |
+| PowerShell (Get-ChildItem -Recurse) | 190 242 µs (190.24 ms) | 190.24 ms | `-` |
 
 ### Filesystem Stat Operations (color_id.h header)
 - **Category**: `B_OS_POSIX`
 - **Winner**: **Node.js (fs.statSync)** (Assigned to **Layer 6**)
 - **Runner Up**: Bun (Bun.file zero-copy stat)
 - **Speedup Factor**: **1.06x**
-- **Primary Metric**: `61424 ops/sec`
+- **Primary Metric**: `63771 ops/sec`
 - **Summary**: Kernel metadata query: Node.js (fs.statSync) achieved 1.06x higher throughput.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Node.js (fs.statSync)** | **61 424 ops/sec** | 8.14 ms | `-` |
-| Bun (Bun.file zero-copy stat) | 57 911 ops/sec | 8.63 ms | `-` |
-| uutils (Rust coreutils stat) | 135 ops/sec | 74.17 ms | `-` |
+| **Node.js (fs.statSync)** | **63 771 ops/sec** | 7.84 ms | `-` |
+| Bun (Bun.file zero-copy stat) | 59 897 ops/sec | 8.35 ms | `-` |
+| uutils (Rust coreutils stat) | 154 ops/sec | 64.78 ms | `-` |
 
 ### POSIX Stream Pipe Throughput (10MB 64KB chunks)
 - **Category**: `B_OS_POSIX`
 - **Winner**: **POSIX Web Stream Pipe (Bun Engine)** (Assigned to **Layer 2**)
 - **Runner Up**: Simulated Blocking Pipe (1Gbps wire baseline)
-- **Speedup Factor**: **303.72x**
-- **Primary Metric**: `37965.1 MB/s`
-- **Summary**: Stream multiplexing: in-memory web stream achieved 37965.1 MB/s throughput.
+- **Speedup Factor**: **299.96x**
+- **Primary Metric**: `37495.3 MB/s`
+- **Summary**: Stream multiplexing: in-memory web stream achieved 37495.3 MB/s throughput.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **POSIX Web Stream Pipe (Bun Engine)** | **37965.1 MB/s** | 0.26 ms | `-` |
+| **POSIX Web Stream Pipe (Bun Engine)** | **37495.3 MB/s** | 0.27 ms | `-` |
 | Simulated Blocking Pipe (1Gbps wire baseline) | 125 MB/s | - | `-` |
 
 ### Zero-Copy Memory Pointer Offset vs Heap Slice Allocation
 - **Category**: `B_OS_POSIX`
 - **Winner**: **Zero-Copy Pointer Subarray (Linux/POSIX memory model)** (Assigned to **Layer 3**)
 - **Runner Up**: Memory Alloc & Copy (Buffer.slice)
-- **Speedup Factor**: **203.9x**
+- **Speedup Factor**: **187.27x**
 - **Primary Metric**: `11M ops/sec`
-- **Summary**: Virtual memory zero-copy: pointer offset avoids kernel/heap copies with 203.9x speedup.
+- **Summary**: Virtual memory zero-copy: pointer offset avoids kernel/heap copies with 187.27x speedup.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Zero-Copy Pointer Subarray (Linux/POSIX memory model)** | **11 111 111 ops/sec** | 0.05 ms | `-` |
-| Memory Alloc & Copy (Buffer.slice) | 54 492 ops/sec | 9.18 ms | `-` |
+| **Zero-Copy Pointer Subarray (Linux/POSIX memory model)** | **11 261 261 ops/sec** | 0.04 ms | `-` |
+| Memory Alloc & Copy (Buffer.slice) | 60 133 ops/sec | 8.31 ms | `-` |
 
 ### Process Creation & Execution Latency
 - **Category**: `B_OS_POSIX`
 - **Winner**: **uutils (Rust coreutils.exe true)** (Assigned to **Layer 4**)
 - **Runner Up**: Windows NT native cmd.exe
-- **Speedup Factor**: **1.02x**
-- **Primary Metric**: `7.4 ms`
-- **Summary**: Process fork/exec: uutils (Rust coreutils.exe true) spawned in 7.4 ms.
+- **Speedup Factor**: **1.04x**
+- **Primary Metric**: `7.0 ms`
+- **Summary**: Process fork/exec: uutils (Rust coreutils.exe true) spawned in 7.0 ms.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **uutils (Rust coreutils.exe true)** | **7 394 µs (7.39 ms)** | 7.39 ms | `-` |
-| Windows NT native cmd.exe | 7 516 µs (7.52 ms) | 7.52 ms | `-` |
-| Bun Process Spawn | 15 558 µs (15.56 ms) | 15.56 ms | `-` |
+| **uutils (Rust coreutils.exe true)** | **6 975 µs (6.97 ms)** | 6.98 ms | `-` |
+| Windows NT native cmd.exe | 7 253 µs (7.25 ms) | 7.25 ms | `-` |
+| Bun Process Spawn | 14 509 µs (14.51 ms) | 14.51 ms | `-` |
 
 ### Shell & Command Runner Startup Latency (Hyperfine Multi-Run Methodology)
 - **Category**: `C_SHELLS`
 - **Winner**: **uutils (Rust coreutils.exe true)** (Assigned to **Layer 4**)
 - **Runner Up**: Windows NT native cmd.exe (/c exit)
-- **Speedup Factor**: **1.05x**
-- **Primary Metric**: `7.32 ms median`
-- **Summary**: Hyperfine startup test: uutils (Rust coreutils.exe true) achieved 7.32 ms median latency, outperforming Windows NT native cmd.exe (/c exit) by 1.05x and slowest shell (Windows PowerShell 5.1 (-NoProfile)) by 24.6x.
+- **Speedup Factor**: **1.07x**
+- **Primary Metric**: `6.51 ms median`
+- **Summary**: Hyperfine startup test: uutils (Rust coreutils.exe true) achieved 6.51 ms median latency, outperforming Windows NT native cmd.exe (/c exit) by 1.07x and slowest shell (PowerShell 7 Core (pwsh.exe -NoProfile)) by 26.2x.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **uutils (Rust coreutils.exe true)** | **7 323 µs (7.32 ms)** | 7.32 ms | `{"minMs":7.13,"medianMs":7.32,"p95Ms":7.59,"maxMs":7.59,"meanMs":7.34,"runs":7,"` |
-| Windows NT native cmd.exe (/c exit) | 7 663 µs (7.66 ms) | 7.66 ms | `{"minMs":7.41,"medianMs":7.66,"p95Ms":9.84,"maxMs":9.84,"meanMs":7.95,"runs":7,"` |
-| Bun.$ (In-Process Tagged Template Shell) | 7 868 µs (7.87 ms) | 7.87 ms | `{"medianMs":7.87,"runs":7,"layer":6}` |
-| Bun CLI Process (bun -e exit) | 14 437 µs (14.44 ms) | 14.44 ms | `{"minMs":13.99,"medianMs":14.44,"p95Ms":14.82,"maxMs":14.82,"meanMs":14.39,"runs` |
-| Git Bash (bash.exe --noprofile -c exit) | 23 681 µs (23.68 ms) | 23.68 ms | `{"minMs":23.09,"medianMs":23.68,"p95Ms":23.9,"maxMs":23.9,"meanMs":23.59,"runs":` |
-| Nushell (nu.exe -c exit) | 24 254 µs (24.25 ms) | 24.25 ms | `{"minMs":23.89,"medianMs":24.25,"p95Ms":24.64,"maxMs":24.64,"meanMs":24.25,"runs` |
-| PowerShell 7 Core (pwsh.exe -NoProfile) | 175 758 µs (175.76 ms) | 175.76 ms | `{"minMs":174.52,"medianMs":175.76,"p95Ms":189.65,"maxMs":189.65,"meanMs":178.98,` |
-| Windows PowerShell 5.1 (-NoProfile) | 180 141 µs (180.14 ms) | 180.14 ms | `{"minMs":171.48,"medianMs":180.14,"p95Ms":185.1,"maxMs":185.1,"meanMs":179.37,"r` |
+| **uutils (Rust coreutils.exe true)** | **6 512 µs (6.51 ms)** | 6.51 ms | `{"minMs":6.4,"medianMs":6.51,"p95Ms":6.65,"maxMs":6.65,"meanMs":6.54,"runs":7,"l` |
+| Windows NT native cmd.exe (/c exit) | 6 968 µs (6.97 ms) | 6.97 ms | `{"minMs":6.86,"medianMs":6.97,"p95Ms":11.8,"maxMs":11.8,"meanMs":7.71,"runs":7,"` |
+| Bun.$ (In-Process Tagged Template Shell) | 7 131 µs (7.13 ms) | 7.13 ms | `{"medianMs":7.13,"runs":7,"layer":6}` |
+| Bun CLI Process (bun -e exit) | 13 239 µs (13.24 ms) | 13.24 ms | `{"minMs":13.1,"medianMs":13.24,"p95Ms":13.41,"maxMs":13.41,"meanMs":13.23,"runs"` |
+| Git Bash (bash.exe --noprofile -c exit) | 22 301 µs (22.30 ms) | 22.30 ms | `{"minMs":22.06,"medianMs":22.3,"p95Ms":23.33,"maxMs":23.33,"meanMs":22.5,"runs":` |
+| Nushell (nu.exe -c exit) | 23 312 µs (23.31 ms) | 23.31 ms | `{"minMs":22.85,"medianMs":23.31,"p95Ms":25.64,"maxMs":25.64,"meanMs":23.66,"runs` |
+| Windows PowerShell 5.1 (-NoProfile) | 162 142 µs (162.14 ms) | 162.14 ms | `{"minMs":158.92,"medianMs":162.14,"p95Ms":170.16,"maxMs":170.16,"meanMs":162.69,` |
+| PowerShell 7 Core (pwsh.exe -NoProfile) | 170 848 µs (170.85 ms) | 170.85 ms | `{"minMs":169.65,"medianMs":170.85,"p95Ms":172,"maxMs":172,"meanMs":170.85,"runs"` |
 
 ### Chromium WebUI Component Bundling (6 Modules + Tokens + Minify + Sourcemap)
 - **Category**: `D_BUILD`
 - **Winner**: **Bun.build (Rust Native Bundler + Minifier + Sourcemap)** (Assigned to **Layer 6**)
 - **Runner Up**: Node.js / Rollup + Terser (Chromium WebUI bundle_js.py baseline)
-- **Speedup Factor**: **224.93x**
-- **Primary Metric**: `1.7 ms latency`
-- **Summary**: WebUI compilation: Bun.build bundled the entire Material 3 component tree in 1.7 ms (224.93x faster than Chromium Rollup/Terser pipeline).
+- **Speedup Factor**: **264.65x**
+- **Primary Metric**: `1.4 ms latency`
+- **Summary**: WebUI compilation: Bun.build bundled the entire Material 3 component tree in 1.4 ms (264.65x faster than Chromium Rollup/Terser pipeline).
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun.build (Rust Native Bundler + Minifier + Sourcemap)** | **1 689 µs (1.69 ms)** | 1.69 ms | `{"bundleSizeBytes":4866,"modules":6}` |
+| **Bun.build (Rust Native Bundler + Minifier + Sourcemap)** | **1 436 µs (1.44 ms)** | 1.44 ms | `{"bundleSizeBytes":4866,"modules":6}` |
 | Node.js / Rollup + Terser (Chromium WebUI bundle_js.py baseline) | 380 000 µs (380.00 ms) | 380.00 ms | `{"modules":6}` |
 
 ### TypeScript In-Memory Transpilation Throughput
 - **Category**: `D_BUILD`
 - **Winner**: **Bun.Transpiler (Rust AST Parser & Code Generator)** (Assigned to **Layer 6**)
 - **Runner Up**: tsc (TypeScript Compiler in Node.js)
-- **Speedup Factor**: **936.7x**
-- **Primary Metric**: `74937 files/sec`
-- **Summary**: TS AST transform: Bun.Transpiler achieved 74937 files/sec (936.7x over tsc).
+- **Speedup Factor**: **962.4x**
+- **Primary Metric**: `76988 files/sec`
+- **Summary**: TS AST transform: Bun.Transpiler achieved 76988 files/sec (962.4x over tsc).
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun.Transpiler (Rust AST Parser & Code Generator)** | **74 937 ops/sec** | 6.67 ms | `-` |
+| **Bun.Transpiler (Rust AST Parser & Code Generator)** | **76 988 ops/sec** | 6.49 ms | `-` |
 | tsc (TypeScript Compiler in Node.js) | 80 ops/sec | - | `-` |
 
 ### Chromium Native Build Orchestration (Siso, GN, Autoninja)
@@ -260,42 +260,42 @@ Total Audited: **22** | **PURGE_FOR_BUN**: **11** | **KEEP_CHROMIUM_NATIVE**: **
 ### In-Process Compression Throughput (2MB Multi-Module Payload)
 - **Category**: `E_COMPRESSION_DB`
 - **Winner**: **Bun.zstdCompressSync (Facebook Zstandard)** (Assigned to **Layer 6**)
-- **Runner Up**: Bun.deflateSync (Raw Deflate)
-- **Speedup Factor**: **6.59x**
-- **Primary Metric**: `3692.9 MB/s`
-- **Summary**: Compression pipeline: Bun.zstdCompressSync (Facebook Zstandard) achieved 3692.9 MB/s (6.59x over Bun.deflateSync (Raw Deflate)).
+- **Runner Up**: Bun.gzipSync (RFC 1952 Gzip)
+- **Speedup Factor**: **6.4x**
+- **Primary Metric**: `3659.5 MB/s`
+- **Summary**: Compression pipeline: Bun.zstdCompressSync (Facebook Zstandard) achieved 3659.5 MB/s (6.4x over Bun.gzipSync (RFC 1952 Gzip)).
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun.zstdCompressSync (Facebook Zstandard)** | **3692.9 MB/s** | 0.43 ms | `{"compressedSize":4277,"ratio":"385.5"}` |
-| Bun.deflateSync (Raw Deflate) | 560.1 MB/s | 2.81 ms | `{"compressedSize":101395,"ratio":"16.3"}` |
-| Bun.gzipSync (RFC 1952 Gzip) | 559.4 MB/s | 2.81 ms | `{"compressedSize":101413,"ratio":"16.3"}` |
+| **Bun.zstdCompressSync (Facebook Zstandard)** | **3659.5 MB/s** | 0.43 ms | `{"compressedSize":4277,"ratio":"385.5"}` |
+| Bun.gzipSync (RFC 1952 Gzip) | 572.2 MB/s | 2.75 ms | `{"compressedSize":101413,"ratio":"16.3"}` |
+| Bun.deflateSync (Raw Deflate) | 560.6 MB/s | 2.81 ms | `{"compressedSize":101395,"ratio":"16.3"}` |
 
 ### Hashing Algorithm Performance (wyhash vs crc32 vs blake2b vs sha256)
 - **Category**: `E_COMPRESSION_DB`
 - **Winner**: **Bun.hash.crc32 (Hardware CRC32)** (Assigned to **Layer 6**)
 - **Runner Up**: Bun.hash.wyhash (Non-crypto SIMD Hash)
-- **Speedup Factor**: **1.06x**
-- **Primary Metric**: `3324k ops/sec`
-- **Summary**: Hash calculation: Bun.hash.crc32 (Hardware CRC32) achieved 3324k ops/sec (1.06x over Bun.hash.wyhash (Non-crypto SIMD Hash)).
+- **Speedup Factor**: **1.05x**
+- **Primary Metric**: `3428k ops/sec`
+- **Summary**: Hash calculation: Bun.hash.crc32 (Hardware CRC32) achieved 3428k ops/sec (1.05x over Bun.hash.wyhash (Non-crypto SIMD Hash)).
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **Bun.hash.crc32 (Hardware CRC32)** | **3 324 402 ops/sec** | 15.04 ms | `-` |
-| Bun.hash.wyhash (Non-crypto SIMD Hash) | 3 139 974 ops/sec | 15.92 ms | `-` |
-| Bun.CryptoHasher('sha256') | 218 789 ops/sec | 228.53 ms | `-` |
-| Bun.CryptoHasher('blake2b256') | 102 955 ops/sec | 485.65 ms | `-` |
+| **Bun.hash.crc32 (Hardware CRC32)** | **3 428 391 ops/sec** | 14.58 ms | `-` |
+| Bun.hash.wyhash (Non-crypto SIMD Hash) | 3 270 047 ops/sec | 15.29 ms | `-` |
+| Bun.CryptoHasher('sha256') | 223 847 ops/sec | 223.37 ms | `-` |
+| Bun.CryptoHasher('blake2b256') | 104 562 ops/sec | 478.18 ms | `-` |
 
 ### bun:sqlite WAL Mode In-Process Prepared Batch Operations
 - **Category**: `E_COMPRESSION_DB`
 - **Winner**: **bun:sqlite Batch Insert (Prepared Statement in Transaction)** (Assigned to **Layer 6**)
-- **Primary Metric**: `1200394 inserts/sec`
-- **Summary**: In-memory SQLite: executed 10000 prepared inserts at 1200394 inserts/sec and 323989 queries/sec with zero external C dependencies.
+- **Primary Metric**: `1209775 inserts/sec`
+- **Summary**: In-memory SQLite: executed 10000 prepared inserts at 1209775 inserts/sec and 333890 queries/sec with zero external C dependencies.
 
 | Contestant | Metric Value | Raw Duration (ms) | Notes |
 |---|---|---|---|
-| **bun:sqlite Batch Insert (Prepared Statement in Transaction)** | **1 200 394 ops/sec** | 8.33 ms | `{"rows":10000,"durationMs":"8.33"}` |
-| bun:sqlite Indexed Select Query (Prepared Statement) | 323 989 ops/sec | 15.43 ms | `{"queries":5000,"durationMs":"15.43"}` |
+| **bun:sqlite Batch Insert (Prepared Statement in Transaction)** | **1 209 775 ops/sec** | 8.27 ms | `{"rows":10000,"durationMs":"8.27"}` |
+| bun:sqlite Indexed Select Query (Prepared Statement) | 333 890 ops/sec | 14.97 ms | `{"queries":5000,"durationMs":"14.97"}` |
 
 ## 5. Architectural Conclusions & Winners Selected
 
