@@ -32,7 +32,8 @@ export interface ContestantMetric {
 
 export interface BenchmarkRecord {
   id: string;
-  category: "A_ENGINES" | "B_OS_POSIX" | "C_SHELLS" | "D_BUILD" | "E_COMPRESSION_DB";
+  category:
+    "A_ENGINES" | "B_OS_POSIX" | "C_SHELLS" | "D_BUILD" | "E_COMPRESSION_DB";
   title: string;
   contestants: ContestantMetric[];
   winner: string;

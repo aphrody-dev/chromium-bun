@@ -5,7 +5,12 @@ import type { DependencyAudit } from "../types.ts";
 
 export interface SubsystemReport {
   name: string;
-  category: "GPU_GRAPHICS" | "ENGINE_WEB" | "NATIVE_UI" | "BUILD_ORCHESTRATION" | "THIRD_PARTY";
+  category:
+    | "GPU_GRAPHICS"
+    | "ENGINE_WEB"
+    | "NATIVE_UI"
+    | "BUILD_ORCHESTRATION"
+    | "THIRD_PARTY";
   path: string;
   exists: boolean;
   sizeBytes?: number;
@@ -39,7 +44,10 @@ export interface ChromiumInspectionResult {
 const CHROMIUM_ROOT = "C:\\src\\chromium\\src";
 const DEPOT_TOOLS_ROOT = "C:\\src\\depot_tools";
 
-export function probeExecutable(command: string, args: string[]): string | null {
+export function probeExecutable(
+  command: string,
+  args: string[],
+): string | null {
   try {
     const proc = Bun.spawnSync([command, ...args], {
       stdout: "pipe",
@@ -181,26 +189,38 @@ export function inspectChromiumTree(): ChromiumInspectionResult {
   // Toolchains probing
   const gnExePath = join(CHROMIUM_ROOT, "buildtools", "win", "gn.exe");
   const ninjaBatPath = join(DEPOT_TOOLS_ROOT, "ninja.bat");
-  const nodeExePath = join(CHROMIUM_ROOT, "third_party", "node", "win", "node.exe");
+  const nodeExePath = join(
+    CHROMIUM_ROOT,
+    "third_party",
+    "node",
+    "win",
+    "node.exe",
+  );
 
   const toolchains: ToolchainProbe[] = [
     {
       tool: "gn (Google Generate Ninja)",
       path: gnExePath,
       detected: existsSync(gnExePath),
-      version: existsSync(gnExePath) ? probeExecutable(gnExePath, ["--version"]) : null,
+      version: existsSync(gnExePath)
+        ? probeExecutable(gnExePath, ["--version"])
+        : null,
     },
     {
       tool: "ninja (Kitware Jobserver)",
       path: ninjaBatPath,
       detected: existsSync(ninjaBatPath),
-      version: existsSync(ninjaBatPath) ? probeExecutable(ninjaBatPath, ["--version"]) : null,
+      version: existsSync(ninjaBatPath)
+        ? probeExecutable(ninjaBatPath, ["--version"])
+        : null,
     },
     {
       tool: "Chromium Bundled Node.js",
       path: nodeExePath,
       detected: existsSync(nodeExePath),
-      version: existsSync(nodeExePath) ? probeExecutable(nodeExePath, ["-v"]) : null,
+      version: existsSync(nodeExePath)
+        ? probeExecutable(nodeExePath, ["-v"])
+        : null,
     },
     {
       tool: "Sovereign Bun",
@@ -224,7 +244,9 @@ export function inspectChromiumTree(): ChromiumInspectionResult {
       const headerContent = readFileSync(colorIdHeaderPath, "utf-8");
       const matches = headerContent.match(/kColor\w+/g);
       if (matches) {
-        material3TokensSample.push(...Array.from(new Set(matches)).slice(0, 16));
+        material3TokensSample.push(
+          ...Array.from(new Set(matches)).slice(0, 16),
+        );
       }
     } catch {
       // Fallback tokens if file read encounters issue
@@ -239,8 +261,12 @@ export function inspectChromiumTree(): ChromiumInspectionResult {
     }
   }
 
-  const purgedCount = CHROMIUM_DEPENDENCY_AUDIT.filter((d) => d.verdict === "PURGE_FOR_BUN").length;
-  const keptCount = CHROMIUM_DEPENDENCY_AUDIT.filter((d) => d.verdict === "KEEP_CHROMIUM_NATIVE").length;
+  const purgedCount = CHROMIUM_DEPENDENCY_AUDIT.filter(
+    (d) => d.verdict === "PURGE_FOR_BUN",
+  ).length;
+  const keptCount = CHROMIUM_DEPENDENCY_AUDIT.filter(
+    (d) => d.verdict === "KEEP_CHROMIUM_NATIVE",
+  ).length;
 
   return {
     chromiumRoot: CHROMIUM_ROOT,
@@ -263,8 +289,12 @@ if (import.meta.main) {
   const inspection = inspectChromiumTree();
   console.log("=== Chromium & depot_tools Sovereign Inspection ===");
   console.log(`Chromium Root: ${inspection.chromiumRoot}`);
-  console.log(`Subsystems Detected: ${inspection.summary.detectedSubsystems}/${inspection.summary.totalSubsystems}`);
-  console.log(`Audit Verdicts: ${inspection.summary.purgedForBun} Purged for Bun | ${inspection.summary.keptChromiumNative} Kept Native`);
+  console.log(
+    `Subsystems Detected: ${inspection.summary.detectedSubsystems}/${inspection.summary.totalSubsystems}`,
+  );
+  console.log(
+    `Audit Verdicts: ${inspection.summary.purgedForBun} Purged for Bun | ${inspection.summary.keptChromiumNative} Kept Native`,
+  );
   console.log("\n--- Toolchains ---");
   for (const tc of inspection.toolchains) {
     console.log(`- ${tc.tool}: ${tc.version || "NOT DETECTED"} (${tc.path})`);

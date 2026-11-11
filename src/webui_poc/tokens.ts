@@ -23,6 +23,9 @@ export type Material3TokenKey = keyof typeof Material3Tokens;
 
 export function getCssVariables(): string {
   return Object.entries(Material3Tokens)
-    .map(([key, val]) => `--cr-${key.replace(/([A-Z])/g, "-$1").toLowerCase()}: ${val};`)
+    .map(
+      ([key, val]) =>
+        `--cr-${key.replace(/([A-Z])/g, "-$1").toLowerCase()}: ${val};`,
+    )
     .join("\n");
 }

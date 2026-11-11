@@ -6,7 +6,8 @@ export async function benchmarkCategoryD(): Promise<BenchmarkRecord[]> {
   const records: BenchmarkRecord[] = [];
   const webuiDir = join(import.meta.dir, "..", "webui_poc");
   const entrypoint = join(webuiDir, "index.ts");
-  const chromiumNodePath = "C:\\src\\chromium\\src\\third_party\\node\\win\\node.exe";
+  const chromiumNodePath =
+    "C:\\src\\chromium\\src\\third_party\\node\\win\\node.exe";
   const hasChromiumNode = existsSync(chromiumNodePath);
 
   // 1. WebUI Component Bundling: Bun.build (Full Minify + Sourcemap) vs Simulated Node/Rollup
@@ -28,7 +29,9 @@ export async function benchmarkCategoryD(): Promise<BenchmarkRecord[]> {
 
     // Simulated Rollup/Node bundler baseline (based on typical Rollup + Terser on 5 modules ~380ms)
     const nodeBundlerEstimatedMs = 380.0;
-    const speedupFactor = Number((nodeBundlerEstimatedMs / bunDuration).toFixed(2));
+    const speedupFactor = Number(
+      (nodeBundlerEstimatedMs / bunDuration).toFixed(2),
+    );
 
     const contestants: ContestantMetric[] = [
       {
@@ -48,7 +51,8 @@ export async function benchmarkCategoryD(): Promise<BenchmarkRecord[]> {
     records.push({
       id: "webui_bundler_poc",
       category: "D_BUILD",
-      title: "Chromium WebUI Component Bundling (6 Modules + Tokens + Minify + Sourcemap)",
+      title:
+        "Chromium WebUI Component Bundling (6 Modules + Tokens + Minify + Sourcemap)",
       contestants,
       winner: contestants[0].name,
       runnerUp: contestants[1].name,
@@ -123,7 +127,10 @@ export async function benchmarkCategoryD(): Promise<BenchmarkRecord[]> {
     const contestants: ContestantMetric[] = [
       {
         name: "Chromium Siso (Go/Rust Next-Gen Ninja)",
-        details: { status: "Active in depot_tools", role: "Remote build execution & cache" },
+        details: {
+          status: "Active in depot_tools",
+          role: "Remote build execution & cache",
+        },
       },
       {
         name: `Google GN Metaninja (v${gnVersion})`,

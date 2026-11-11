@@ -34,6 +34,9 @@ export class CrToolbar extends HTMLElement {
   }
 }
 
-if (typeof customElements !== "undefined" && !customElements.get("cr-toolbar")) {
+if (
+  typeof customElements !== "undefined" &&
+  !customElements.get("cr-toolbar")
+) {
   customElements.define("cr-toolbar", CrToolbar);
 }

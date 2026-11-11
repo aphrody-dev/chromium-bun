@@ -1,5 +1,5 @@
 {
-  "name": "@sovereign/chromium-bun",
+  "name": "@aphrody/chromium-bun",
   "version": "1.0.0",
   "description": "6-Layer Sovereign Architecture: Chromium Extraction, Bun Replacement Purge and Public Benchmark Proof-of-Concept Suite",
   "type": "module",

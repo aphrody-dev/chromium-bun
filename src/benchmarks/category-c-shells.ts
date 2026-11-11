@@ -96,7 +96,10 @@ export async function benchmarkCategoryC(): Promise<BenchmarkRecord[]> {
       timings.sort((a, b) => a - b);
       const min = timings[0];
       const median = timings[Math.floor(timings.length / 2)];
-      const p95 = timings[Math.min(timings.length - 1, Math.floor(timings.length * 0.95))];
+      const p95 =
+        timings[
+          Math.min(timings.length - 1, Math.floor(timings.length * 0.95))
+        ];
       const max = timings[timings.length - 1];
       const mean = timings.reduce((a, b) => a + b, 0) / timings.length;
 
@@ -150,18 +153,27 @@ export async function benchmarkCategoryC(): Promise<BenchmarkRecord[]> {
 
   const winner = contestantMetrics[0];
   const runnerUp = contestantMetrics[1];
-  const speedupFactor = Number((runnerUp.latencyUs! / winner.latencyUs!).toFixed(2));
+  const speedupFactor = Number(
+    (runnerUp.latencyUs! / winner.latencyUs!).toFixed(2),
+  );
   const slowest = contestantMetrics[contestantMetrics.length - 1];
-  const totalSpeedupVsSlowest = Number((slowest.latencyUs! / winner.latencyUs!).toFixed(1));
+  const totalSpeedupVsSlowest = Number(
+    (slowest.latencyUs! / winner.latencyUs!).toFixed(1),
+  );
 
   const targetWinner = targets.find((t) => t.name === winner.name);
-  const winnerLayer = targetWinner ? targetWinner.layer : (winner.name.includes("Bun") ? 6 : 4);
+  const winnerLayer = targetWinner
+    ? targetWinner.layer
+    : winner.name.includes("Bun")
+      ? 6
+      : 4;
 
   return [
     {
       id: "shell_startup_hyperfine",
       category: "C_SHELLS",
-      title: "Shell & Command Runner Startup Latency (Hyperfine Multi-Run Methodology)",
+      title:
+        "Shell & Command Runner Startup Latency (Hyperfine Multi-Run Methodology)",
       contestants: contestantMetrics,
       winner: winner.name,
       runnerUp: runnerUp.name,

@@ -14,7 +14,8 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
           id: i,
           token: `kColorRefPrimary${i % 100}`,
           hex: `#${(i * 1234567).toString(16).slice(0, 6).padStart(6, "0")}`,
-          metadata: "Chromium Views Material 3 Dynamic Mixer & Bun Full Rust Engine",
+          metadata:
+            "Chromium Views Material 3 Dynamic Mixer & Bun Full Rust Engine",
         })),
       }).repeat(25),
     );
@@ -29,7 +30,9 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
       zstdSize = out.length;
     }
     const zstdDuration = (performance.now() - zstdStart) / iterations;
-    const zstdThroughput = Number((dataSizeMB / (zstdDuration / 1000)).toFixed(1));
+    const zstdThroughput = Number(
+      (dataSizeMB / (zstdDuration / 1000)).toFixed(1),
+    );
 
     // Deflate (Bun.deflateSync)
     const deflateStart = performance.now();
@@ -39,7 +42,9 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
       deflateSize = out.length;
     }
     const deflateDuration = (performance.now() - deflateStart) / iterations;
-    const deflateThroughput = Number((dataSizeMB / (deflateDuration / 1000)).toFixed(1));
+    const deflateThroughput = Number(
+      (dataSizeMB / (deflateDuration / 1000)).toFixed(1),
+    );
 
     // Gzip (Bun.gzipSync)
     const gzipStart = performance.now();
@@ -49,33 +54,46 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
       gzipSize = out.length;
     }
     const gzipDuration = (performance.now() - gzipStart) / iterations;
-    const gzipThroughput = Number((dataSizeMB / (gzipDuration / 1000)).toFixed(1));
+    const gzipThroughput = Number(
+      (dataSizeMB / (gzipDuration / 1000)).toFixed(1),
+    );
 
     const contestants: ContestantMetric[] = [
       {
         name: "Bun.zstdCompressSync (Facebook Zstandard)",
         throughputMBs: zstdThroughput,
         rawDurationMs: zstdDuration,
-        details: { compressedSize: zstdSize, ratio: (samplePayload.length / zstdSize).toFixed(1) },
+        details: {
+          compressedSize: zstdSize,
+          ratio: (samplePayload.length / zstdSize).toFixed(1),
+        },
       },
       {
         name: "Bun.deflateSync (Raw Deflate)",
         throughputMBs: deflateThroughput,
         rawDurationMs: deflateDuration,
-        details: { compressedSize: deflateSize, ratio: (samplePayload.length / deflateSize).toFixed(1) },
+        details: {
+          compressedSize: deflateSize,
+          ratio: (samplePayload.length / deflateSize).toFixed(1),
+        },
       },
       {
         name: "Bun.gzipSync (RFC 1952 Gzip)",
         throughputMBs: gzipThroughput,
         rawDurationMs: gzipDuration,
-        details: { compressedSize: gzipSize, ratio: (samplePayload.length / gzipSize).toFixed(1) },
+        details: {
+          compressedSize: gzipSize,
+          ratio: (samplePayload.length / gzipSize).toFixed(1),
+        },
       },
     ];
 
     contestants.sort((a, b) => b.throughputMBs! - a.throughputMBs!);
     const winner = contestants[0];
     const runnerUp = contestants[1];
-    const speedupFactor = Number((winner.throughputMBs! / runnerUp.throughputMBs!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.throughputMBs! / runnerUp.throughputMBs!).toFixed(2),
+    );
 
     records.push({
       id: "compression_throughput",
@@ -93,7 +111,9 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
 
   // 2. High-Performance Hashing (wyhash vs crc32 vs blake2b vs sha256)
   {
-    const hashData = Buffer.from("sovereign_depot_chromium_bun_hash_test_vector_payload_".repeat(200)); // ~10KB
+    const hashData = Buffer.from(
+      "sovereign_depot_chromium_bun_hash_test_vector_payload_".repeat(200),
+    ); // ~10KB
     const iterations = 50_000;
 
     // wyhash
@@ -133,21 +153,40 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
     const shaOps = (iterations / shaDuration) * 1000;
 
     const contestants: ContestantMetric[] = [
-      { name: "Bun.hash.wyhash (Non-crypto SIMD Hash)", opsPerSec: Math.round(wyOps), rawDurationMs: wyDuration },
-      { name: "Bun.hash.crc32 (Hardware CRC32)", opsPerSec: Math.round(crcOps), rawDurationMs: crcDuration },
-      { name: "Bun.CryptoHasher('blake2b256')", opsPerSec: Math.round(blakeOps), rawDurationMs: blakeDuration },
-      { name: "Bun.CryptoHasher('sha256')", opsPerSec: Math.round(shaOps), rawDurationMs: shaDuration },
+      {
+        name: "Bun.hash.wyhash (Non-crypto SIMD Hash)",
+        opsPerSec: Math.round(wyOps),
+        rawDurationMs: wyDuration,
+      },
+      {
+        name: "Bun.hash.crc32 (Hardware CRC32)",
+        opsPerSec: Math.round(crcOps),
+        rawDurationMs: crcDuration,
+      },
+      {
+        name: "Bun.CryptoHasher('blake2b256')",
+        opsPerSec: Math.round(blakeOps),
+        rawDurationMs: blakeDuration,
+      },
+      {
+        name: "Bun.CryptoHasher('sha256')",
+        opsPerSec: Math.round(shaOps),
+        rawDurationMs: shaDuration,
+      },
     ];
 
     contestants.sort((a, b) => b.opsPerSec! - a.opsPerSec!);
     const winner = contestants[0];
     const runnerUp = contestants[1];
-    const speedupFactor = Number((winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2),
+    );
 
     records.push({
       id: "hashing_throughput",
       category: "E_COMPRESSION_DB",
-      title: "Hashing Algorithm Performance (wyhash vs crc32 vs blake2b vs sha256)",
+      title:
+        "Hashing Algorithm Performance (wyhash vs crc32 vs blake2b vs sha256)",
       contestants,
       winner: winner.name,
       runnerUp: runnerUp.name,
@@ -163,24 +202,34 @@ export function benchmarkCategoryE(): BenchmarkRecord[] {
     const db = new Database(":memory:");
     db.run("PRAGMA journal_mode = WAL;");
     db.run("PRAGMA synchronous = NORMAL;");
-    db.run("CREATE TABLE webui_components (id INTEGER PRIMARY KEY, name TEXT, token TEXT, size_bytes INT);");
+    db.run(
+      "CREATE TABLE webui_components (id INTEGER PRIMARY KEY, name TEXT, token TEXT, size_bytes INT);",
+    );
     db.run("CREATE INDEX idx_comp_token ON webui_components(token);");
 
     const rowCount = 10_000;
 
     // Batch Insert with Prepared Statement in Transaction
-    const insertStmt = db.prepare("INSERT INTO webui_components (name, token, size_bytes) VALUES (?, ?, ?)");
+    const insertStmt = db.prepare(
+      "INSERT INTO webui_components (name, token, size_bytes) VALUES (?, ?, ?)",
+    );
     const insertStart = performance.now();
     db.transaction(() => {
       for (let i = 0; i < rowCount; i++) {
-        insertStmt.run(`cr-component-${i}`, `kColorRefPrimary${i % 50}`, 1024 + i);
+        insertStmt.run(
+          `cr-component-${i}`,
+          `kColorRefPrimary${i % 50}`,
+          1024 + i,
+        );
       }
     })();
     const insertDuration = performance.now() - insertStart;
     const insertOps = (rowCount / insertDuration) * 1000;
 
     // Indexed Select Queries with Prepared Statement
-    const selectStmt = db.prepare("SELECT * FROM webui_components WHERE token = ? LIMIT 10");
+    const selectStmt = db.prepare(
+      "SELECT * FROM webui_components WHERE token = ? LIMIT 10",
+    );
     const selectStart = performance.now();
     for (let i = 0; i < 5_000; i++) {
       selectStmt.all(`kColorRefPrimary${i % 50}`);

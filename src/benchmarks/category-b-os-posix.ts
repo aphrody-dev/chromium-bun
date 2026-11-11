@@ -1,5 +1,12 @@
 import type { BenchmarkRecord, ContestantMetric } from "../types.ts";
-import { statSync, readFileSync, readdirSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import {
+  statSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+  unlinkSync,
+  existsSync,
+} from "node:fs";
 import { join } from "node:path";
 import { ReadableStream, WritableStream } from "node:stream/web";
 
@@ -49,15 +56,31 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
     const psLatencyUs = Math.round(psDuration * 1000);
 
     const contestants: ContestantMetric[] = [
-      { name: "Bun (new Bun.Glob in Rust)", latencyUs: bunLatencyUs, rawDurationMs: bunDuration, details: { filesScanned: bunCount } },
-      { name: "Node.js (fs.readdirSync recursive)", latencyUs: nodeLatencyUs, rawDurationMs: nodeDuration, details: { filesScanned: nodeCount } },
-      { name: "PowerShell (Get-ChildItem -Recurse)", latencyUs: psLatencyUs, rawDurationMs: psDuration },
+      {
+        name: "Bun (new Bun.Glob in Rust)",
+        latencyUs: bunLatencyUs,
+        rawDurationMs: bunDuration,
+        details: { filesScanned: bunCount },
+      },
+      {
+        name: "Node.js (fs.readdirSync recursive)",
+        latencyUs: nodeLatencyUs,
+        rawDurationMs: nodeDuration,
+        details: { filesScanned: nodeCount },
+      },
+      {
+        name: "PowerShell (Get-ChildItem -Recurse)",
+        latencyUs: psLatencyUs,
+        rawDurationMs: psDuration,
+      },
     ];
 
     contestants.sort((a, b) => a.latencyUs! - b.latencyUs!);
     const winner = contestants[0];
     const runnerUp = contestants[1];
-    const speedupFactor = Number((runnerUp.latencyUs! / winner.latencyUs!).toFixed(2));
+    const speedupFactor = Number(
+      (runnerUp.latencyUs! / winner.latencyUs!).toFixed(2),
+    );
 
     records.push({
       id: "directory_walk_fs",
@@ -97,15 +120,25 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
     const nodeOps = (iterations / nodeDuration) * 1000;
 
     const contestants: ContestantMetric[] = [
-      { name: "Bun (Bun.file zero-copy stat)", opsPerSec: Math.round(bunOps), rawDurationMs: bunDuration },
-      { name: "Node.js (fs.statSync)", opsPerSec: Math.round(nodeOps), rawDurationMs: nodeDuration },
+      {
+        name: "Bun (Bun.file zero-copy stat)",
+        opsPerSec: Math.round(bunOps),
+        rawDurationMs: bunDuration,
+      },
+      {
+        name: "Node.js (fs.statSync)",
+        opsPerSec: Math.round(nodeOps),
+        rawDurationMs: nodeDuration,
+      },
     ];
 
     if (HAS_UUTILS) {
       const uutilsStart = performance.now();
       const uutilsCount = 10;
       for (let i = 0; i < uutilsCount; i++) {
-        Bun.spawnSync([UUTILS_COREUTILS, "stat", sampleFilePath], { stdout: "ignore" });
+        Bun.spawnSync([UUTILS_COREUTILS, "stat", sampleFilePath], {
+          stdout: "ignore",
+        });
       }
       const uutilsDuration = performance.now() - uutilsStart;
       const uutilsOps = (uutilsCount / uutilsDuration) * 1000;
@@ -119,7 +152,9 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
     contestants.sort((a, b) => b.opsPerSec! - a.opsPerSec!);
     const winner = contestants[0];
     const runnerUp = contestants[1];
-    const speedupFactor = Number((winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2),
+    );
 
     records.push({
       id: "file_stat_ops",
@@ -162,15 +197,24 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
 
     await readable.pipeTo(writable);
     const duration = performance.now() - t0;
-    const throughputMBs = Number(((totalBytes / (1024 * 1024)) / (duration / 1000)).toFixed(1));
+    const throughputMBs = Number(
+      (totalBytes / (1024 * 1024) / (duration / 1000)).toFixed(1),
+    );
 
     records.push({
       id: "pipe_stream_throughput",
       category: "B_OS_POSIX",
       title: "POSIX Stream Pipe Throughput (10MB 64KB chunks)",
       contestants: [
-        { name: "POSIX Web Stream Pipe (Bun Engine)", throughputMBs, rawDurationMs: duration },
-        { name: "Simulated Blocking Pipe (1Gbps wire baseline)", throughputMBs: 125.0 },
+        {
+          name: "POSIX Web Stream Pipe (Bun Engine)",
+          throughputMBs,
+          rawDurationMs: duration,
+        },
+        {
+          name: "Simulated Blocking Pipe (1Gbps wire baseline)",
+          throughputMBs: 125.0,
+        },
       ],
       winner: "POSIX Web Stream Pipe (Bun Engine)",
       runnerUp: "Simulated Blocking Pipe (1Gbps wire baseline)",
@@ -210,8 +254,16 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
       category: "B_OS_POSIX",
       title: "Zero-Copy Memory Pointer Offset vs Heap Slice Allocation",
       contestants: [
-        { name: "Zero-Copy Pointer Subarray (Linux/POSIX memory model)", opsPerSec: Math.round(zeroCopyOps), rawDurationMs: zeroCopyDuration },
-        { name: "Memory Alloc & Copy (Buffer.slice)", opsPerSec: Math.round(copyOps), rawDurationMs: copyDuration },
+        {
+          name: "Zero-Copy Pointer Subarray (Linux/POSIX memory model)",
+          opsPerSec: Math.round(zeroCopyOps),
+          rawDurationMs: zeroCopyDuration,
+        },
+        {
+          name: "Memory Alloc & Copy (Buffer.slice)",
+          opsPerSec: Math.round(copyOps),
+          rawDurationMs: copyDuration,
+        },
       ],
       winner: "Zero-Copy Pointer Subarray (Linux/POSIX memory model)",
       runnerUp: "Memory Alloc & Copy (Buffer.slice)",
@@ -251,15 +303,29 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
     }
 
     const contestants: ContestantMetric[] = [
-      { name: "Windows NT native cmd.exe", latencyUs: Math.round(cmdAvgDuration * 1000), rawDurationMs: cmdAvgDuration },
-      { name: "uutils (Rust coreutils.exe true)", latencyUs: Math.round(uutilsAvgDuration * 1000), rawDurationMs: uutilsAvgDuration },
-      { name: "Bun Process Spawn", latencyUs: Math.round(bunAvgDuration * 1000), rawDurationMs: bunAvgDuration },
+      {
+        name: "Windows NT native cmd.exe",
+        latencyUs: Math.round(cmdAvgDuration * 1000),
+        rawDurationMs: cmdAvgDuration,
+      },
+      {
+        name: "uutils (Rust coreutils.exe true)",
+        latencyUs: Math.round(uutilsAvgDuration * 1000),
+        rawDurationMs: uutilsAvgDuration,
+      },
+      {
+        name: "Bun Process Spawn",
+        latencyUs: Math.round(bunAvgDuration * 1000),
+        rawDurationMs: bunAvgDuration,
+      },
     ];
 
     contestants.sort((a, b) => a.latencyUs! - b.latencyUs!);
     const winner = contestants[0];
     const runnerUp = contestants[1];
-    const speedupFactor = Number((runnerUp.latencyUs! / winner.latencyUs!).toFixed(2));
+    const speedupFactor = Number(
+      (runnerUp.latencyUs! / winner.latencyUs!).toFixed(2),
+    );
 
     records.push({
       id: "process_spawn_latency",
@@ -270,7 +336,11 @@ export async function benchmarkCategoryB(): Promise<BenchmarkRecord[]> {
       runnerUp: runnerUp.name,
       speedupFactor,
       primaryMetric: `${(winner.latencyUs! / 1000).toFixed(1)} ms`,
-      winnerLayer: winner.name.includes("cmd") ? 1 : winner.name.includes("uutils") ? 4 : 6,
+      winnerLayer: winner.name.includes("cmd")
+        ? 1
+        : winner.name.includes("uutils")
+          ? 4
+          : 6,
       summary: `Process fork/exec: ${winner.name} spawned in ${(winner.latencyUs! / 1000).toFixed(1)} ms.`,
     });
   }

@@ -1,4 +1,8 @@
-import type { BenchmarkRecord, SovereignLayerId, WinnerManifest } from "./types.ts";
+import type {
+  BenchmarkRecord,
+  SovereignLayerId,
+  WinnerManifest,
+} from "./types.ts";
 import { CHROMIUM_DEPENDENCY_AUDIT } from "./audit/purge-matrix.ts";
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -17,7 +21,9 @@ export const CANONICAL_HARDWARE: HostHardwareSpecs = {
   os: "Microsoft Windows NT 10.0.26100 (x64) with native IOCP & DirectStorage",
 };
 
-export function buildWinnerManifest(benchmarks: BenchmarkRecord[]): WinnerManifest {
+export function buildWinnerManifest(
+  benchmarks: BenchmarkRecord[],
+): WinnerManifest {
   const winnersByLayer: Record<SovereignLayerId, number> = {
     1: 0,
     2: 0,
@@ -29,12 +35,17 @@ export function buildWinnerManifest(benchmarks: BenchmarkRecord[]): WinnerManife
 
   for (const b of benchmarks) {
     if (b.winnerLayer >= 1 && b.winnerLayer <= 6) {
-      winnersByLayer[b.winnerLayer as SovereignLayerId] = (winnersByLayer[b.winnerLayer as SovereignLayerId] || 0) + 1;
+      winnersByLayer[b.winnerLayer as SovereignLayerId] =
+        (winnersByLayer[b.winnerLayer as SovereignLayerId] || 0) + 1;
     }
   }
 
-  const purgedCount = CHROMIUM_DEPENDENCY_AUDIT.filter((d) => d.verdict === "PURGE_FOR_BUN").length;
-  const keptCount = CHROMIUM_DEPENDENCY_AUDIT.filter((d) => d.verdict === "KEEP_CHROMIUM_NATIVE").length;
+  const purgedCount = CHROMIUM_DEPENDENCY_AUDIT.filter(
+    (d) => d.verdict === "PURGE_FOR_BUN",
+  ).length;
+  const keptCount = CHROMIUM_DEPENDENCY_AUDIT.filter(
+    (d) => d.verdict === "KEEP_CHROMIUM_NATIVE",
+  ).length;
 
   return {
     timestamp: new Date().toISOString(),
@@ -50,7 +61,10 @@ export function buildWinnerManifest(benchmarks: BenchmarkRecord[]): WinnerManife
   };
 }
 
-export function saveWinnerManifest(manifest: WinnerManifest, targetPath?: string): string {
+export function saveWinnerManifest(
+  manifest: WinnerManifest,
+  targetPath?: string,
+): string {
   const path = targetPath || join(process.cwd(), "winners.json");
   writeFileSync(path, JSON.stringify(manifest, null, 2), "utf-8");
   return path;

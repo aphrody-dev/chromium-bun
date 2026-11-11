@@ -103,8 +103,12 @@ export function runNavierStokes(size = 32, steps = 15): number {
         const t1 = y - j0;
         const t0 = 1 - t1;
         dens[idx] =
-          s0 * (t0 * dens_prev[i0 + (size + 2) * j0] + t1 * dens_prev[i0 + (size + 2) * j1]) +
-          s1 * (t0 * dens_prev[i1 + (size + 2) * j0] + t1 * dens_prev[i1 + (size + 2) * j1]);
+          s0 *
+            (t0 * dens_prev[i0 + (size + 2) * j0] +
+              t1 * dens_prev[i0 + (size + 2) * j1]) +
+          s1 *
+            (t0 * dens_prev[i1 + (size + 2) * j0] +
+              t1 * dens_prev[i1 + (size + 2) * j1]);
       }
     }
   }
@@ -132,8 +136,8 @@ export function runRayTrace(rays = 2000): number {
 
   let hits = 0;
   for (let i = 0; i < rays; i++) {
-    const rx = ((i % 10) / 5) - 1.0;
-    const ry = ((Math.floor(i / 10) % 10) / 5) - 1.0;
+    const rx = (i % 10) / 5 - 1.0;
+    const ry = (Math.floor(i / 10) % 10) / 5 - 1.0;
     const rz = -1.0;
     const len = Math.sqrt(rx * rx + ry * ry + rz * rz);
     const dx = rx / len;
@@ -160,9 +164,21 @@ export function runJsonParseSerialize(iterations = 250): number {
     id: "cr-token-55",
     active: true,
     palettes: [
-      { name: "primary", hex: "#005ac1", tonalValues: [10, 20, 30, 40, 80, 90, 100] },
-      { name: "secondary", hex: "#535f70", tonalValues: [10, 20, 30, 40, 80, 90, 100] },
-      { name: "tertiary", hex: "#6c567b", tonalValues: [10, 20, 30, 40, 80, 90, 100] },
+      {
+        name: "primary",
+        hex: "#005ac1",
+        tonalValues: [10, 20, 30, 40, 80, 90, 100],
+      },
+      {
+        name: "secondary",
+        hex: "#535f70",
+        tonalValues: [10, 20, 30, 40, 80, 90, 100],
+      },
+      {
+        name: "tertiary",
+        hex: "#6c567b",
+        tonalValues: [10, 20, 30, 40, 80, 90, 100],
+      },
     ],
     metadata: {
       framework: "chromium-views",
@@ -181,34 +197,106 @@ export function runJsonParseSerialize(iterations = 250): number {
 }
 
 // 6. WebAssembly Compute Kernel (Compiled Bytecode)
-export function getWasmModule(): { module: WebAssembly.Module; instance: WebAssembly.Instance; compute: (n: number) => number } {
+export function getWasmModule(): {
+  module: WebAssembly.Module;
+  instance: WebAssembly.Instance;
+  compute: (n: number) => number;
+} {
   const funcBody = [
-    0x02, 0x01, 0x7f, 0x01, 0x7f, // 2 locals: i32, i32
-    0x02, 0x40,                   // block
-    0x03, 0x40,                   // loop
-    0x20, 0x01, 0x20, 0x00, 0x4e, // local.get 1, local.get 0, i32.ge_s
-    0x0d, 0x01,                   // br_if 1 (break to block)
+    0x02,
+    0x01,
+    0x7f,
+    0x01,
+    0x7f, // 2 locals: i32, i32
+    0x02,
+    0x40, // block
+    0x03,
+    0x40, // loop
+    0x20,
+    0x01,
+    0x20,
+    0x00,
+    0x4e, // local.get 1, local.get 0, i32.ge_s
+    0x0d,
+    0x01, // br_if 1 (break to block)
     // acc = (acc + counter * 3) ^ 0x55
-    0x20, 0x02, 0x20, 0x01, 0x41, 0x03, 0x6c, 0x6a, 0x41, 0x55, 0x73, 0x21, 0x02,
+    0x20,
+    0x02,
+    0x20,
+    0x01,
+    0x41,
+    0x03,
+    0x6c,
+    0x6a,
+    0x41,
+    0x55,
+    0x73,
+    0x21,
+    0x02,
     // counter++
-    0x20, 0x01, 0x41, 0x01, 0x6a, 0x21, 0x01,
-    0x0c, 0x00,                   // br 0 (continue loop)
-    0x0b,                         // end loop
-    0x0b,                         // end block
-    0x20, 0x02,                   // local.get 2 (return acc)
-    0x0b                          // end func
+    0x20,
+    0x01,
+    0x41,
+    0x01,
+    0x6a,
+    0x21,
+    0x01,
+    0x0c,
+    0x00, // br 0 (continue loop)
+    0x0b, // end loop
+    0x0b, // end block
+    0x20,
+    0x02, // local.get 2 (return acc)
+    0x0b, // end func
   ];
-  const codeSec = [0x0a, funcBody.length + 2, 0x01, funcBody.length, ...funcBody];
+  const codeSec = [
+    0x0a,
+    funcBody.length + 2,
+    0x01,
+    funcBody.length,
+    ...funcBody,
+  ];
   const wasm = new Uint8Array([
-    0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00,
-    0x01, 0x06, 0x01, 0x60, 0x01, 0x7f, 0x01, 0x7f,
-    0x03, 0x02, 0x01, 0x00,
-    0x07, 0x0b, 0x01, 0x07, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x00, 0x00,
-    ...codeSec
+    0x00,
+    0x61,
+    0x73,
+    0x6d,
+    0x01,
+    0x00,
+    0x00,
+    0x00,
+    0x01,
+    0x06,
+    0x01,
+    0x60,
+    0x01,
+    0x7f,
+    0x01,
+    0x7f,
+    0x03,
+    0x02,
+    0x01,
+    0x00,
+    0x07,
+    0x0b,
+    0x01,
+    0x07,
+    0x63,
+    0x6f,
+    0x6d,
+    0x70,
+    0x75,
+    0x74,
+    0x65,
+    0x00,
+    0x00,
+    ...codeSec,
   ]);
   const module = new WebAssembly.Module(wasm);
   const instance = new WebAssembly.Instance(module);
-  const compute = (instance.exports as unknown as { compute: (n: number) => number }).compute;
+  const compute = (
+    instance.exports as unknown as { compute: (n: number) => number }
+  ).compute;
   return { module, instance, compute };
 }
 
@@ -218,13 +306,20 @@ export function getWasmModule(): { module: WebAssembly.Module; instance: WebAsse
 
 export function benchmarkCategoryA(): BenchmarkRecord[] {
   const records: BenchmarkRecord[] = [];
-  const chromiumNodePath = "C:\\src\\chromium\\src\\third_party\\node\\win\\node.exe";
+  const chromiumNodePath =
+    "C:\\src\\chromium\\src\\third_party\\node\\win\\node.exe";
   const hasChromiumNode = existsSync(chromiumNodePath);
   const nodeBinary = hasChromiumNode ? chromiumNodePath : "node";
 
   // Helper to run code in Node.js (V8)
-  function runInNodeV8(scriptBody: string): { durationMs: number; opsPerSec: number } {
-    const tempFile = join(process.cwd(), `.temp_bench_${Date.now()}_${Math.random().toString(36).slice(2)}.cjs`);
+  function runInNodeV8(scriptBody: string): {
+    durationMs: number;
+    opsPerSec: number;
+  } {
+    const tempFile = join(
+      process.cwd(),
+      `.temp_bench_${Date.now()}_${Math.random().toString(36).slice(2)}.cjs`,
+    );
     const fullScript = `
       const { performance } = require('perf_hooks');
       ${scriptBody}
@@ -232,7 +327,10 @@ export function benchmarkCategoryA(): BenchmarkRecord[] {
     writeFileSync(tempFile, fullScript, "utf-8");
     try {
       const start = performance.now();
-      const proc = Bun.spawnSync([nodeBinary, tempFile], { stdout: "pipe", stderr: "pipe" });
+      const proc = Bun.spawnSync([nodeBinary, tempFile], {
+        stdout: "pipe",
+        stderr: "pipe",
+      });
       const elapsed = performance.now() - start;
       if (proc.exitCode !== 0) {
         throw new Error(proc.stderr.toString());
@@ -267,13 +365,23 @@ export function benchmarkCategoryA(): BenchmarkRecord[] {
     `);
 
     const contestants: ContestantMetric[] = [
-      { name: "Bun (JavaScriptCore)", opsPerSec: Math.round(bunOps), rawDurationMs: bunDuration },
-      { name: `Node.js (Chromium V8 ${hasChromiumNode ? "Bundled" : "Host"})`, opsPerSec: Math.round(nodeRes.opsPerSec), rawDurationMs: nodeRes.durationMs },
+      {
+        name: "Bun (JavaScriptCore)",
+        opsPerSec: Math.round(bunOps),
+        rawDurationMs: bunDuration,
+      },
+      {
+        name: `Node.js (Chromium V8 ${hasChromiumNode ? "Bundled" : "Host"})`,
+        opsPerSec: Math.round(nodeRes.opsPerSec),
+        rawDurationMs: nodeRes.durationMs,
+      },
     ];
     const isBunWinner = bunOps >= nodeRes.opsPerSec;
     const winner = isBunWinner ? contestants[0] : contestants[1];
     const runnerUp = isBunWinner ? contestants[1] : contestants[0];
-    const speedupFactor = Number((winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2),
+    );
 
     records.push({
       id: "octane_richards",
@@ -306,13 +414,23 @@ export function benchmarkCategoryA(): BenchmarkRecord[] {
     `);
 
     const contestants: ContestantMetric[] = [
-      { name: "Bun (JavaScriptCore)", opsPerSec: Number(bunOps.toFixed(1)), rawDurationMs: bunDuration },
-      { name: `Node.js (Chromium V8 ${hasChromiumNode ? "Bundled" : "Host"})`, opsPerSec: Number(nodeRes.opsPerSec.toFixed(1)), rawDurationMs: nodeRes.durationMs },
+      {
+        name: "Bun (JavaScriptCore)",
+        opsPerSec: Number(bunOps.toFixed(1)),
+        rawDurationMs: bunDuration,
+      },
+      {
+        name: `Node.js (Chromium V8 ${hasChromiumNode ? "Bundled" : "Host"})`,
+        opsPerSec: Number(nodeRes.opsPerSec.toFixed(1)),
+        rawDurationMs: nodeRes.durationMs,
+      },
     ];
     const isBunWinner = bunOps >= nodeRes.opsPerSec;
     const winner = isBunWinner ? contestants[0] : contestants[1];
     const runnerUp = isBunWinner ? contestants[1] : contestants[0];
-    const speedupFactor = Number((winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2),
+    );
 
     records.push({
       id: "octane_navierstokes",
@@ -357,18 +475,29 @@ export function benchmarkCategoryA(): BenchmarkRecord[] {
     const wasmOps = (loops / wasmDuration) * 1000;
 
     const contestants: ContestantMetric[] = [
-      { name: "WebAssembly (Inline WASM Instance)", opsPerSec: Math.round(wasmOps), rawDurationMs: wasmDuration },
-      { name: "Bun JSC JIT (Pure JavaScript)", opsPerSec: Math.round(jsOps), rawDurationMs: jsDuration },
+      {
+        name: "WebAssembly (Inline WASM Instance)",
+        opsPerSec: Math.round(wasmOps),
+        rawDurationMs: wasmDuration,
+      },
+      {
+        name: "Bun JSC JIT (Pure JavaScript)",
+        opsPerSec: Math.round(jsOps),
+        rawDurationMs: jsDuration,
+      },
     ];
     const isWasmWinner = wasmOps >= jsOps;
     const winner = isWasmWinner ? contestants[0] : contestants[1];
     const runnerUp = isWasmWinner ? contestants[1] : contestants[0];
-    const speedupFactor = Number((winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2),
+    );
 
     records.push({
       id: "wasm_vs_jit_compute",
       category: "A_ENGINES",
-      title: "WebAssembly vs Native JavaScript JIT Numeric Kernel (1M Iterations)",
+      title:
+        "WebAssembly vs Native JavaScript JIT Numeric Kernel (1M Iterations)",
       contestants,
       winner: winner.name,
       runnerUp: runnerUp.name,
@@ -396,13 +525,23 @@ export function benchmarkCategoryA(): BenchmarkRecord[] {
     `);
 
     const contestants: ContestantMetric[] = [
-      { name: "Bun (JavaScriptCore JSON C++ parser)", opsPerSec: Math.round(bunOps), rawDurationMs: bunDuration },
-      { name: `Node.js (Chromium V8 ${hasChromiumNode ? "Bundled" : "Host"})`, opsPerSec: Math.round(nodeRes.opsPerSec), rawDurationMs: nodeRes.durationMs },
+      {
+        name: "Bun (JavaScriptCore JSON C++ parser)",
+        opsPerSec: Math.round(bunOps),
+        rawDurationMs: bunDuration,
+      },
+      {
+        name: `Node.js (Chromium V8 ${hasChromiumNode ? "Bundled" : "Host"})`,
+        opsPerSec: Math.round(nodeRes.opsPerSec),
+        rawDurationMs: nodeRes.durationMs,
+      },
     ];
     const isBunWinner = bunOps >= nodeRes.opsPerSec;
     const winner = isBunWinner ? contestants[0] : contestants[1];
     const runnerUp = isBunWinner ? contestants[1] : contestants[0];
-    const speedupFactor = Number((winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2));
+    const speedupFactor = Number(
+      (winner.opsPerSec! / runnerUp.opsPerSec!).toFixed(2),
+    );
 
     records.push({
       id: "json_parse_serialize",
