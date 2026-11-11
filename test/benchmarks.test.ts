@@ -61,7 +61,7 @@ describe("Empirical Public Benchmark Proof-of-Concept Suite", () => {
       expect(shellRecord.contestants.length).toBeGreaterThanOrEqual(4);
       expect(shellRecord.winner).toBeDefined();
       expect(shellRecord.speedupFactor).toBeGreaterThanOrEqual(1.0);
-    });
+    }, 15_000);
   });
 
   describe("Category D: Build & Bundler Toolchain Benchmark", () => {

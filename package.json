@@ -8,9 +8,10 @@
     "start": "bun run src/index.ts",
     "bench": "bun run src/benchmarks/runner.ts",
     "inspect": "bun run src/audit/chromium-inspector.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "check": "bun check",
+    "fmt": "bun fmt"
   },
-  "devDependencies": {
-    "@types/bun": "latest"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
