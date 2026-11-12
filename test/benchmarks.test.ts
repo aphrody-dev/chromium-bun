@@ -1,5 +1,11 @@
 import { describe, expect, it } from "bun:test";
-import { runRichards, runNavierStokes, runRayTrace, runJsonParseSerialize, getWasmModule } from "../src/benchmarks/category-a-engines.ts";
+import {
+  runRichards,
+  runNavierStokes,
+  runRayTrace,
+  runJsonParseSerialize,
+  getWasmModule,
+} from "../src/benchmarks/category-a-engines.ts";
 import { benchmarkCategoryB } from "../src/benchmarks/category-b-os-posix.ts";
 import { benchmarkCategoryC } from "../src/benchmarks/category-c-shells.ts";
 import { benchmarkCategoryD } from "../src/benchmarks/category-d-build.ts";
@@ -84,7 +90,9 @@ describe("Empirical Public Benchmark Proof-of-Concept Suite", () => {
       const records = benchmarkCategoryE();
       expect(records.length).toBe(3);
 
-      const compression = records.find((r) => r.id === "compression_throughput");
+      const compression = records.find(
+        (r) => r.id === "compression_throughput",
+      );
       expect(compression).toBeDefined();
       expect(compression?.winner).toContain("zstd");
 

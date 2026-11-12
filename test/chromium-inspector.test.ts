@@ -11,7 +11,9 @@ describe("Chromium & depot_tools Sovereign Inspection", () => {
   it("should detect all key Chromium native subsystems", () => {
     const inspection = inspectChromiumTree();
     expect(inspection.isChromiumPristine).toBe(true);
-    expect(inspection.summary.detectedSubsystems).toBe(inspection.summary.totalSubsystems);
+    expect(inspection.summary.detectedSubsystems).toBe(
+      inspection.summary.totalSubsystems,
+    );
 
     const dawn = inspection.subsystems.find((s) => s.name.includes("Dawn"));
     expect(dawn).toBeDefined();
@@ -40,7 +42,9 @@ describe("Chromium & depot_tools Sovereign Inspection", () => {
     expect(gn?.detected).toBe(true);
     expect(gn?.version).toContain("2614");
 
-    const node = inspection.toolchains.find((t) => t.tool.includes("Chromium Bundled Node.js"));
+    const node = inspection.toolchains.find((t) =>
+      t.tool.includes("Chromium Bundled Node.js"),
+    );
     expect(node?.detected).toBe(true);
     expect(node?.version).toContain("v24.");
   });
@@ -48,6 +52,8 @@ describe("Chromium & depot_tools Sovereign Inspection", () => {
   it("should extract real Material 3 tokens from Chromium ui/color", () => {
     const inspection = inspectChromiumTree();
     expect(inspection.material3TokensSample.length).toBeGreaterThan(0);
-    expect(inspection.material3TokensSample.some((tok) => tok.startsWith("kColor"))).toBe(true);
+    expect(
+      inspection.material3TokensSample.some((tok) => tok.startsWith("kColor")),
+    ).toBe(true);
   });
 });

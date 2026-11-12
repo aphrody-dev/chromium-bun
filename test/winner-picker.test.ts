@@ -1,5 +1,9 @@
 import { describe, expect, it } from "bun:test";
-import { buildWinnerManifest, saveWinnerManifest, CANONICAL_HARDWARE } from "../src/winner-picker.ts";
+import {
+  buildWinnerManifest,
+  saveWinnerManifest,
+  CANONICAL_HARDWARE,
+} from "../src/winner-picker.ts";
 import type { BenchmarkRecord } from "../src/types.ts";
 import { existsSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
@@ -10,7 +14,10 @@ describe("Winner Picker & Manifest Generator", () => {
       id: "test_b1",
       category: "A_ENGINES",
       title: "Test Compute",
-      contestants: [{ name: "Bun JSC", opsPerSec: 1000 }, { name: "Node V8", opsPerSec: 800 }],
+      contestants: [
+        { name: "Bun JSC", opsPerSec: 1000 },
+        { name: "Node V8", opsPerSec: 800 },
+      ],
       winner: "Bun JSC",
       speedupFactor: 1.25,
       primaryMetric: "1000 ops/sec",

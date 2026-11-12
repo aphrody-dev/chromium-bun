@@ -7,7 +7,9 @@ describe("Chromium Third-Party Keep vs Purge Matrix", () => {
   });
 
   it("should classify Node, Rollup, Terser, SQLite, and compression scripts as PURGE_FOR_BUN", () => {
-    const purged = CHROMIUM_DEPENDENCY_AUDIT.filter((d) => d.verdict === "PURGE_FOR_BUN");
+    const purged = CHROMIUM_DEPENDENCY_AUDIT.filter(
+      (d) => d.verdict === "PURGE_FOR_BUN",
+    );
     expect(purged.length).toBeGreaterThanOrEqual(10);
 
     const nodeAudit = purged.find((p) => p.name.includes("node-and-webui"));
@@ -25,11 +27,15 @@ describe("Chromium Third-Party Keep vs Purge Matrix", () => {
 
     const compressionAudit = purged.find((p) => p.name.includes("compression"));
     expect(compressionAudit).toBeDefined();
-    expect(compressionAudit?.replacementOrNativePath).toContain("zstdCompressSync");
+    expect(compressionAudit?.replacementOrNativePath).toContain(
+      "zstdCompressSync",
+    );
   });
 
   it("should classify Dawn, Skia, Blink, V8, CC, Views, Siso, and SIMD as KEEP_CHROMIUM_NATIVE", () => {
-    const kept = CHROMIUM_DEPENDENCY_AUDIT.filter((d) => d.verdict === "KEEP_CHROMIUM_NATIVE");
+    const kept = CHROMIUM_DEPENDENCY_AUDIT.filter(
+      (d) => d.verdict === "KEEP_CHROMIUM_NATIVE",
+    );
     expect(kept.length).toBeGreaterThanOrEqual(10);
 
     const dawnAudit = kept.find((k) => k.name.includes("dawn"));

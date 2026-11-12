@@ -1,32 +1,19 @@
-import { inspectChromiumTree } from "./audit/chromium-inspector.ts";
-import { CHROMIUM_DEPENDENCY_AUDIT } from "./audit/purge-matrix.ts";
-import { runAllBenchmarks } from "./benchmarks/runner.ts";
-import { SOVEREIGN_LAYERS, getAllLayers } from "./layers.ts";
-import { CANONICAL_HARDWARE } from "./winner-picker.ts";
-
+// SPDX-License-Identifier: Apache-2.0
 export * from "./types.ts";
 export * from "./layers.ts";
 export * from "./audit/chromium-inspector.ts";
 export * from "./audit/purge-matrix.ts";
 export * from "./winner-picker.ts";
 export * from "./benchmarks/runner.ts";
-
-async function main() {
-  const args = process.argv.slice(2);
-  const command = args[0] || "all";
-
-  if (command === "inspect") {
-    const inspection = inspectChromiumTree();
-    console.log(JSON.stringify(inspection, null, 2));
-  } else if (command === "layers") {
-    console.log(JSON.stringify(getAllLayers(), null, 2));
-  } else if (command === "matrix") {
-    console.log(JSON.stringify(CHROMIUM_DEPENDENCY_AUDIT, null, 2));
-  } else {
-    await runAllBenchmarks();
-  }
-}
-
-if (import.meta.main) {
-  main();
-}
+export * from "./browser/cdp-client.ts";
+export * from "./browser/ssrf.ts";
+export * from "./browser/shields.ts";
+export * from "./browser/launcher.ts";
+export * from "./browser/chromium-tracker.ts";
+export * from "./browser/bun-v8-bridge.ts";
+export * from "./search/indexer.ts";
+export * from "./search/crawler.ts";
+export * from "./search/cluster-3vps.ts";
+export * from "./search/boq-grounding.ts";
+export * from "./qa/real-browser-audit.ts";
+export * from "./qa/e2e-runner.ts";

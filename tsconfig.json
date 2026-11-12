@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "bundler",
@@ -16,14 +12,12 @@
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "types": [
-      "bun"
-    ]
+    "allowJs": true
   },
   "include": [
     "src/**/*",
     "test/**/*",
+    "tests/**/*",
     "../bun-plugins/bun-native.d.ts"
   ]
 }
